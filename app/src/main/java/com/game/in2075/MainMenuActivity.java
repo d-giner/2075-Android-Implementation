@@ -33,17 +33,6 @@ public class MainMenuActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
 
-    private BroadcastReceiver broadcastReceiver = new BroadcastReceiver() { /** Close activity by receiving a broadcast signal */
-
-        @Override
-        public void onReceive(Context arg0, Intent intent) {
-            String action = intent.getAction();
-            if (action.equals("finish_activity")) {
-                finish();
-            }
-        }
-    };
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,7 +61,6 @@ public class MainMenuActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
 
-        registerReceiver(broadcastReceiver, new IntentFilter("finish_activity"));
     }
 
     @Override

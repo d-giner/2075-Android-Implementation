@@ -135,7 +135,7 @@ public class RegisterActivity extends AppCompatActivity {
             public void onClick(View v) {
                 msgDialog.dismiss();
                 if (userVerified) {
-                    Intent intent = new Intent (v.getContext(), MainActivity.class); /** Go to Main Nav. Menu Activy if navmenu_background success*/
+                    Intent intent = new Intent (v.getContext(), LoginActivity.class); /** Go to Main Nav. Menu Activy if navmenu_background success*/
                     startActivityForResult(intent, 0);
                     finish();
                 }

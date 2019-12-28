@@ -13,17 +13,6 @@ import androidx.preference.PreferenceFragmentCompat;
 
 public class SettingsActivity extends AppCompatActivity {
 
-    private BroadcastReceiver broadcastReceiver = new BroadcastReceiver() { /** Close activity by receiving a broadcast signal */
-
-        @Override
-        public void onReceive(Context arg0, Intent intent) {
-            String action = intent.getAction();
-            if (action.equals("finish_activity")) {
-                finish();
-            }
-        }
-    };
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,7 +28,6 @@ public class SettingsActivity extends AppCompatActivity {
 
         /** v__New Code From Here__v */
 
-        registerReceiver(broadcastReceiver, new IntentFilter("finish_activity"));
 
     }
 

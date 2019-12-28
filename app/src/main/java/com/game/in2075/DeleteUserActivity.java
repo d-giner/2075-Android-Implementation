@@ -11,9 +11,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.game.in2075.Retrofit.Json2075API;
-import com.game.in2075.Retrofit.JsonClasses.FormReg;
 
-import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -124,10 +122,11 @@ public class DeleteUserActivity extends AppCompatActivity {
                 popDialog.dismiss();
                 if (userVerified) {
                     finish();
-                    Intent intent = new Intent("finish_activity"); /** Drop broadcast singal in order to close all activities */
-                    sendBroadcast(intent);
-                    intent = new Intent (v.getContext(), MainActivity.class); /** Reopen the Login Activity*/
-                    startActivityForResult(intent, 0);
+                    /** Close all activities */
+                    Intent intent = new Intent(getApplicationContext(),LoginActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    startActivity(intent);
                     userVerified = false;
                 }
             }

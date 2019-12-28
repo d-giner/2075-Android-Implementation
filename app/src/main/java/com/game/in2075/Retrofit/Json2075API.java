@@ -1,6 +1,7 @@
 package com.game.in2075.Retrofit;
 
 import com.game.in2075.Retrofit.JsonClasses.FormReg;
+import com.google.gson.JsonElement;
 
 import java.util.*;
 
@@ -19,7 +20,7 @@ public interface Json2075API {
     Call<FormReg> setUserReg(@Body FormReg u);
 
     @POST("authent/log")
-    Call<FormReg> setUserLog(@Body FormReg u);
+    Call<JsonElement> setUserLog(@Body FormReg u);
 
     @DELETE("authent/del/{username}/")
     Call<Void> setUserDel(@Path("username") String username);

@@ -18,26 +18,18 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import com.game.in2075.Retrofit.Json2075API;
 import com.game.in2075.Retrofit.JsonClasses.FormReg;
+import com.game.in2075.Retrofit.JsonClasses.UserTO;
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
 
 
-public class MainActivity extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity {
 
     private Json2075API jsonAPI;
     private TextView userTxt, passTxt;
     private Boolean userVerified = false;
     private Button logButt, regButt;
     Dialog myDialog;
-
-    private BroadcastReceiver broadcastReceiver = new BroadcastReceiver() { /** Close activity by receiving a broadcast signal */
-
-        @Override
-        public void onReceive(Context arg0, Intent intent) {
-            String action = intent.getAction();
-            if (action.equals("finish_activity")) {
-                finish();
-            }
-        }
-    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,8 +43,6 @@ public class MainActivity extends AppCompatActivity {
         regButt = findViewById(R.id.regButton);
         userTxt = findViewById(R.id.userText);
         passTxt = findViewById(R.id.passText);
-
-        registerReceiver(broadcastReceiver, new IntentFilter("finish_activity"));
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("http://10.0.2.2:8080/2075App/")
@@ -73,10 +63,9 @@ public class MainActivity extends AppCompatActivity {
                 String b = passTxt.getText().toString();
 
                 if (a.equals("") || b.equals(""))
-                    showWarning(new FormReg(), "Ey!" + "\n\n" + "Don't leave any field in blank!");
+                    showWarning(new UserTO(), "Ey!" + "\n\n" + "Don't leave any field in blank!");
                 else
                     logUser();
-                //startDrawerMenu(); /** Solo para testeos, luego borrar!! */
             }
         });
     }
@@ -94,46 +83,47 @@ public class MainActivity extends AppCompatActivity {
     //Log and Reg Callable Methods
     public void logUser(){
         final FormReg logUserData = new FormReg(userTxt.getText().toString(),passTxt.getText().toString());
-        Call<FormReg> call = jsonAPI.setUserLog(logUserData);
+        Call<JsonElement> call = jsonAPI.setUserLog(logUserData);
 
         passTxt.setText("");
 
-        call.enqueue(new Callback<FormReg>() {
+        call.enqueue(new Callback<JsonElement>() {
             @Override
-            public void onResponse(Call<FormReg> call, Response<FormReg> response) {
+            public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
+                JsonElement questions = response.body();
 
                 if(!response.isSuccessful()){
                     switch (response.code()) {
                         case 403:
-                            showWarning(logUserData, "Are you registered?" + "\n\n" + "Seems like user or password is wrong!");
+                            showWarning(new UserTO(), "Are you registered?" + "\n\n" + "Seems like user or password is wrong!");
                             break;
                         default:
-                            showWarning(logUserData, "Oops!" + "\n\n" + "Seem something goes wrong :S");
+                            showWarning(new UserTO(), "Oops!" + "\n\n" + "Seem something goes wrong :S");
                             break;
                     }
                     return;
                 } else {
-                    FormReg logResponse = response.body();
+                    UserTO userResponse = new Gson().fromJson(questions.getAsJsonObject(), UserTO.class);
                     userVerified = true;
-                    showWarning(logResponse,"");
+                    showWarning(userResponse,"");
                 }
             }
 
             @Override
-            public void onFailure(Call<FormReg> call, Throwable t) {
+            public void onFailure(Call<JsonElement> call, Throwable t) {
                 Log.d("JSON", t.toString());
             }
         });
     }
 
     //Callable Layout for warnings. Now is used for login
-    public void showWarning(FormReg u, String s){
+    public void showWarning(UserTO u, String s){
         TextView closeWarning, warningMsg;
         myDialog.setContentView(R.layout.popup_messages);
         closeWarning = (TextView) myDialog.findViewById(R.id.closeTxt);
         warningMsg = (TextView) myDialog.findViewById(R.id.warningtTxt);
 
-        if (userVerified)
+        if (userVerified && u != null)
             warningMsg.setText("Welcome back: " + u.getUsername() + "\n\n" + "We were missing you!");
         else
             warningMsg.setText(s);
