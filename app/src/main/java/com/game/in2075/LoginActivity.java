@@ -2,12 +2,10 @@ package com.game.in2075;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.app.Dialog;
-import android.content.BroadcastReceiver;
-import android.content.Context;
-import android.content.IntentFilter;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.TextView;
 import android.content.Intent;
@@ -29,6 +27,7 @@ public class LoginActivity extends AppCompatActivity {
     private TextView userTxt, passTxt;
     private Boolean userVerified = false;
     private Button logButt, regButt;
+    private UserTO userData;
     Dialog myDialog;
 
     @Override
@@ -36,6 +35,8 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         /** New code from here */
+
+        getSupportActionBar().hide();
 
         myDialog = new Dialog(this);
 
@@ -76,6 +77,8 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent (v.getContext(), RegisterActivity.class); /** Go to Register Activity */
                 startActivityForResult(intent, 0);
+                userTxt.setText("");
+                passTxt.setText("");
             }
         });
     }
@@ -119,6 +122,7 @@ public class LoginActivity extends AppCompatActivity {
     //Callable Layout for warnings. Now is used for login
     public void showWarning(UserTO u, String s){
         TextView closeWarning, warningMsg;
+        final UserTO auxUser = u;
         myDialog.setContentView(R.layout.popup_messages);
         closeWarning = (TextView) myDialog.findViewById(R.id.closeTxt);
         warningMsg = (TextView) myDialog.findViewById(R.id.warningtTxt);
@@ -134,6 +138,7 @@ public class LoginActivity extends AppCompatActivity {
                 myDialog.dismiss();
                 if (userVerified) {
                     Intent intent = new Intent (v.getContext(), MainMenuActivity.class); /** Go to Main Nav. Menu Activy if login success*/
+                    intent.putExtra("userLog", auxUser);
                     startActivityForResult(intent, 0);
                     userVerified = false;
                 }
@@ -143,4 +148,5 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     /** -^- END LOGIN AND REGISTRATION -^- */
+
 }

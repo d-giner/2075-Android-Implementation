@@ -1,6 +1,8 @@
 package com.game.in2075.Retrofit.JsonClasses;
 
-public class UserTO {
+import java.io.Serializable;
+
+public class UserTO implements Serializable {
 
 
     int ID;

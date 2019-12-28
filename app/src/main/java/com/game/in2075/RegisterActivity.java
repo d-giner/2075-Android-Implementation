@@ -33,6 +33,8 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
+        getSupportActionBar().hide();
+
         regBttn = findViewById(R.id.regButton);
         cancelBttn = findViewById(R.id.cancelButton);
         userTxt = findViewById(R.id.userText);
@@ -113,7 +115,7 @@ public class RegisterActivity extends AppCompatActivity {
         });
     }
 
-    //Callable Layout for warnings. Now is used for navmenu_background
+    //Callable Layout for warnings. Now is used for main_menu_background
     public void showWarning(FormReg u, String s){
         TextView closeWarning, warningMsg;
         msgDialog.setContentView(R.layout.popup_messages);
@@ -135,8 +137,6 @@ public class RegisterActivity extends AppCompatActivity {
             public void onClick(View v) {
                 msgDialog.dismiss();
                 if (userVerified) {
-                    Intent intent = new Intent (v.getContext(), LoginActivity.class); /** Go to Main Nav. Menu Activy if navmenu_background success*/
-                    startActivityForResult(intent, 0);
                     finish();
                 }
             }

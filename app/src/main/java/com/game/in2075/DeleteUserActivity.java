@@ -32,6 +32,8 @@ public class DeleteUserActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_delete_user);
 
+        getSupportActionBar().hide();
+
         popDialog = new Dialog(this);
 
         Retrofit retrofit = new Retrofit.Builder()
