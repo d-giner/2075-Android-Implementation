@@ -16,6 +16,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import com.game.in2075.Retrofit.Json2075API;
 import com.game.in2075.Retrofit.JsonClasses.FormReg;
+import com.game.in2075.Retrofit.JsonClasses.SharedData;
 import com.game.in2075.Retrofit.JsonClasses.UserTO;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
@@ -23,12 +24,13 @@ import com.google.gson.JsonElement;
 
 public class LoginActivity extends AppCompatActivity {
 
-    private Json2075API jsonAPI;
+    //private Json2075API jsonAPI;
     private TextView userTxt, passTxt;
     private Boolean userVerified = false;
     private Button logButt, regButt;
     private UserTO userData;
     Dialog myDialog;
+    SharedData sharedData = SharedData.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,12 +47,12 @@ public class LoginActivity extends AppCompatActivity {
         userTxt = findViewById(R.id.userText);
         passTxt = findViewById(R.id.passText);
 
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://10.0.2.2:8080/2075App/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        jsonAPI =  retrofit.create(Json2075API.class);
+//        Retrofit retrofit = new Retrofit.Builder()
+//                .baseUrl("http://10.0.2.2:8080/2075App/")
+//                .addConverterFactory(GsonConverterFactory.create())
+//                .build();
+//
+//        jsonAPI =  retrofit.create(Json2075API.class);
         loginUser(); //We let ready the buttons to execute the functions on click
         registerUser();
     }
@@ -86,7 +88,7 @@ public class LoginActivity extends AppCompatActivity {
     //Log and Reg Callable Methods
     public void logUser(){
         final FormReg logUserData = new FormReg(userTxt.getText().toString(),passTxt.getText().toString());
-        Call<JsonElement> call = jsonAPI.setUserLog(logUserData);
+        Call<JsonElement> call = sharedData.useRetrofit().setUserLog(logUserData);
 
         passTxt.setText("");
 
@@ -138,8 +140,9 @@ public class LoginActivity extends AppCompatActivity {
                 myDialog.dismiss();
                 if (userVerified) {
                     Intent intent = new Intent (v.getContext(), MainMenuActivity.class); /** Go to Main Nav. Menu Activy if login success*/
-                    intent.putExtra("userLog", auxUser);
+                    //intent.putExtra("userLog", auxUser);
                     startActivityForResult(intent, 0);
+                    sharedData.setUser(auxUser);
                     userVerified = false;
                 }
             }
