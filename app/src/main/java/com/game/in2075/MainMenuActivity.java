@@ -14,6 +14,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.game.in2075.Retrofit.JsonClasses.UserTO;
+import com.google.android.material.bottomnavigation.BottomNavigationMenuView;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainMenuActivity extends AppCompatActivity {
 
@@ -27,6 +29,9 @@ public class MainMenuActivity extends AppCompatActivity {
 
         settingsBttn = findViewById(R.id.settingsButton);
         userDataTxt = findViewById(R.id.userDataText);
+
+        //BottomNavigationMenuView bottomNavigationMenuView = (BottomNavigationView)findViewById(R.id.);
+
 
         UserTO dataUser = (UserTO) getIntent().getSerializableExtra("userLog");
     }
