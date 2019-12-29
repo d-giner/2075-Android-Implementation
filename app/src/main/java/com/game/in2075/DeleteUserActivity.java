@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.game.in2075.Retrofit.Json2075API;
+import com.game.in2075.Retrofit.JsonClasses.SharedData;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -22,10 +23,9 @@ public class DeleteUserActivity extends AppCompatActivity {
 
     private Button delBttn, cancelBttn;
     private TextView userTxt, passTxt, noseTxt;
-    private Json2075API jsonAPI;
-    private Dialog msgDialog;
+    private SharedData sharedData = SharedData.getInstance();
     private Boolean userVerified = false;
-    Dialog popDialog;
+    private Dialog popDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,13 +35,6 @@ public class DeleteUserActivity extends AppCompatActivity {
         getSupportActionBar().hide();
 
         popDialog = new Dialog(this);
-
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://10.0.2.2:8080/2075App/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        jsonAPI =  retrofit.create(Json2075API.class);
 
         delBttn = findViewById(R.id.deleteButton);
         cancelBttn = findViewById(R.id.cancelButton);
@@ -58,8 +51,11 @@ public class DeleteUserActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String a = userTxt.getText().toString();
-                if (!a.equals(""))
-                delUser();
+                String b = passTxt.getText().toString();
+                if (!a.equals("") && b.equals(sharedData.getUser().getPassword()))
+                    delUser();
+                else
+                    showWarning("Username or password is incorrect." + "\n\n" + "Check your credentials.");
             }
         });
     }
@@ -68,8 +64,6 @@ public class DeleteUserActivity extends AppCompatActivity {
         cancelBttn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                userTxt.setText("");
-                passTxt.setText("");
                 finish();
             }
         });
@@ -77,7 +71,7 @@ public class DeleteUserActivity extends AppCompatActivity {
 
     public void delUser(){
         final String username = userTxt.getText().toString();
-        Call<Void> call = jsonAPI.setUserDel(username);
+        Call<Void> call = sharedData.useRetrofit().setUserDel(username);
 
         call.enqueue(new Callback<Void>() {
             @Override

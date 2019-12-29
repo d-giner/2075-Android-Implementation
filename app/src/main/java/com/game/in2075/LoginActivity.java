@@ -24,13 +24,11 @@ import com.google.gson.JsonElement;
 
 public class LoginActivity extends AppCompatActivity {
 
-    //private Json2075API jsonAPI;
     private TextView userTxt, passTxt;
     private Boolean userVerified = false;
     private Button logButt, regButt;
-    private UserTO userData;
-    Dialog myDialog;
-    SharedData sharedData = SharedData.getInstance();
+    private Dialog myDialog;
+    private SharedData sharedData = SharedData.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,12 +45,6 @@ public class LoginActivity extends AppCompatActivity {
         userTxt = findViewById(R.id.userText);
         passTxt = findViewById(R.id.passText);
 
-//        Retrofit retrofit = new Retrofit.Builder()
-//                .baseUrl("http://10.0.2.2:8080/2075App/")
-//                .addConverterFactory(GsonConverterFactory.create())
-//                .build();
-//
-//        jsonAPI =  retrofit.create(Json2075API.class);
         loginUser(); //We let ready the buttons to execute the functions on click
         registerUser();
     }
@@ -90,8 +82,6 @@ public class LoginActivity extends AppCompatActivity {
         final FormReg logUserData = new FormReg(userTxt.getText().toString(),passTxt.getText().toString());
         Call<JsonElement> call = sharedData.useRetrofit().setUserLog(logUserData);
 
-        passTxt.setText("");
-
         call.enqueue(new Callback<JsonElement>() {
             @Override
             public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
@@ -108,7 +98,7 @@ public class LoginActivity extends AppCompatActivity {
                     }
                     return;
                 } else {
-                    UserTO userResponse = new Gson().fromJson(questions.getAsJsonObject(), UserTO.class);
+                    UserTO userResponse = new Gson().fromJson(questions.getAsJsonObject(), UserTO.class); //Obtain the JsonObject and transform to type UserTO
                     userVerified = true;
                     showWarning(userResponse,"");
                 }
@@ -140,10 +130,10 @@ public class LoginActivity extends AppCompatActivity {
                 myDialog.dismiss();
                 if (userVerified) {
                     Intent intent = new Intent (v.getContext(), MainMenuActivity.class); /** Go to Main Nav. Menu Activy if login success*/
-                    //intent.putExtra("userLog", auxUser);
                     startActivityForResult(intent, 0);
                     sharedData.setUser(auxUser);
                     userVerified = false;
+                    finish();
                 }
             }
         });

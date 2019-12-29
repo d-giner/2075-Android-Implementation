@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.game.in2075.Retrofit.Json2075API;
 import com.game.in2075.Retrofit.JsonClasses.FormReg;
+import com.game.in2075.Retrofit.JsonClasses.SharedData;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -24,7 +25,7 @@ public class RegisterActivity extends AppCompatActivity {
 
     private Button regBttn, cancelBttn;
     private TextView userTxt, passTxt, nameTxt;
-    private Json2075API jsonAPI;
+    private SharedData sharedData = SharedData.getInstance();
     private Dialog msgDialog;
     Boolean userVerified = false;
 
@@ -42,13 +43,6 @@ public class RegisterActivity extends AppCompatActivity {
         nameTxt = findViewById(R.id.nameText);
 
         msgDialog = new Dialog(this);
-
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://10.0.2.2:8080/2075App/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        jsonAPI =  retrofit.create(Json2075API.class);
 
         cancelRegister();
         registerUser();
@@ -81,7 +75,7 @@ public class RegisterActivity extends AppCompatActivity {
 
     public void regUser(){
         final FormReg regUserData = new FormReg(userTxt.getText().toString(),passTxt.getText().toString(), nameTxt.getText().toString());
-        Call<FormReg> call = jsonAPI.setUserReg(regUserData);
+        Call<FormReg> call = sharedData.useRetrofit().setUserReg(regUserData);
 
         call.enqueue(new Callback<FormReg>() {
             @Override

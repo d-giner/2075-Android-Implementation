@@ -8,13 +8,10 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.game.in2075.Retrofit.JsonClasses.UserTO;
-import com.google.android.material.bottomnavigation.BottomNavigationMenuView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainMenuActivity extends AppCompatActivity {
@@ -28,7 +25,7 @@ public class MainMenuActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main_menu);
 
         settingsBttn = findViewById(R.id.settingsButton);
-        userDataTxt = findViewById(R.id.userDataText);
+        userDataTxt = findViewById(R.id.userNameText);
 
         //We inicialize the bottom navigation menu
         BottomNavigationView bottomNavigationView = (BottomNavigationView)findViewById(R.id.bottomNavView_Bar);
@@ -45,16 +42,19 @@ public class MainMenuActivity extends AppCompatActivity {
                     case R.id.ic_stats:
                         Intent intent1 = new Intent(getApplicationContext(),StatsActivity.class);
                         startActivity(intent1);
+                        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
                         finish();
                         break;
                     case R.id.ic_inventory:
                         Intent intent2 = new Intent(getApplicationContext(),InventoryActivity.class);
                         startActivity(intent2);
+                        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
                         finish();
                         break;
                     case R.id.ic_shop:
                         Intent intent3 = new Intent(getApplicationContext(),ShopActivity.class);
                         startActivity(intent3);
+                        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
                         finish();
                         break;
                 }

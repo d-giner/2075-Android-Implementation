@@ -7,12 +7,15 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 //Class with singletone to share some data between activities
 public class SharedData {
-    private static SharedData instance = new SharedData();
+    private static SharedData instance = null;
 
     private UserTO user;
     private Json2075API jsonAPI;
 
     public static SharedData getInstance(){
+        if (instance == null){
+            instance = new SharedData();
+        }
          return instance;
      }
 

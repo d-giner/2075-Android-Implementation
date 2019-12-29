@@ -30,16 +30,19 @@ public class InventoryActivity extends AppCompatActivity {
                     case R.id.ic_home:
                         Intent intent2 = new Intent(getApplicationContext(),MainMenuActivity.class);
                         startActivity(intent2);
+                        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
                         finish();
                         break;
                     case R.id.ic_stats:
                         Intent intent1 = new Intent(getApplicationContext(),StatsActivity.class);
                         startActivity(intent1);
+                        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
                         finish();
                         break;
                     case R.id.ic_shop:
                         Intent intent3 = new Intent(getApplicationContext(),ShopActivity.class);
                         startActivity(intent3);
+                        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
                         finish();
                         break;
                 }
