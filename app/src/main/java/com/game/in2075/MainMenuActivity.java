@@ -24,7 +24,7 @@ public class MainMenuActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
 
-        settingsBttn = findViewById(R.id.settingsButton);
+        settingsBttn = findViewById(R.id.startGameButton);
         userDataTxt = findViewById(R.id.userNameText);
 
         //We inicialize the bottom navigation menu

@@ -8,10 +8,10 @@
     android:background="@drawable/main_menu_background">
 
     <Button
-        android:id="@+id/settingsButton"
+        android:id="@+id/startGameButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="My stats"
+        android:text="Start Game"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -22,11 +22,12 @@
         android:id="@+id/userNameText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/press_start_2p"
         android:text="Main menu"
         android:textColor="@color/Cian"
         android:textSize="36sp"
         android:textStyle="bold|italic"
-        app:layout_constraintBottom_toTopOf="@+id/settingsButton"
+        app:layout_constraintBottom_toTopOf="@+id/startGameButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"

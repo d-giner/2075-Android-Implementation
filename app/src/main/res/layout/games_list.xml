@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="410dp"
+    android:layout_height="310dp">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/button_background_mygames"
+        android:layout_gravity="center"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="8dp">
+
+    <TextView
+        android:id="@+id/dateText"
+        android:layout_width="380dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/press_start_2p"
+        android:text="00/00/0000"
+        android:textAlignment="center"
+        android:textColor="@android:color/black"
+        android:textSize="24sp"
+        android:layout_marginTop="16dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/press_start_2p"
+        android:text="Points:"
+        android:textColor="@android:color/black"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/pointsText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/press_start_2p"
+        android:text='"Points"'
+        android:textColor="@color/White"
+        android:textSize="18sp"
+        android:layout_marginTop="8dp"
+        android:layout_marginLeft="32dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/press_start_2p"
+        android:text="Level reached:"
+        android:textColor="@android:color/black"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/levelText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/press_start_2p"
+        android:text='"Level reached"'
+        android:textColor="@color/White"
+        android:textSize="18sp"
+        android:layout_marginTop="8dp"
+        android:layout_marginLeft="32dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/press_start_2p"
+        android:text="Killed enemies:"
+        android:textColor="@android:color/black"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/killsText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/press_start_2p"
+        android:text='"Killed enemies"'
+        android:textColor="@color/White"
+        android:textSize="18sp"
+        android:layout_marginTop="8dp"
+        android:layout_marginLeft="32dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/press_start_2p"
+        android:text="You have death:"
+        android:textColor="@android:color/black"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/deathsText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/press_start_2p"
+        android:text='"Death times"'
+        android:textColor="@color/White"
+        android:textSize="18sp"
+        android:layout_marginTop="8dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginBottom="16dp"/>
+</LinearLayout>
+
+</LinearLayout>
