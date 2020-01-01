@@ -1,6 +1,5 @@
 package com.game.in2075.Retrofit.JsonClasses;
 
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,17 +13,17 @@ import com.game.in2075.R;
 
 import java.util.List;
 
-public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolderData> {
-    private List<Game> games; /** Creem una llista de la classe elements */
+public class DataAdapterGames extends RecyclerView.Adapter<DataAdapterGames.ViewHolderData> {
+    private List<Game> games; /** We create a Game list */
 
-    public DataAdapter(List<Game> g) { /** Constructor */
+    public DataAdapterGames(List<Game> g) { /** Constructor */
         this.games = g;
     }
 
     @NonNull
     @Override
-    public ViewHolderData onCreateViewHolder(@NonNull ViewGroup parent, int viewType) { /** Enllaçarà aquest adaptador amb el layout item_list a través de la funció ViewHolderData() */
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.games_list,null,false);    /** ja que a aquesta funció li pasarem el view que hem creat aquí */
+    public ViewHolderData onCreateViewHolder(@NonNull ViewGroup parent, int viewType) { /** It links the adapter with game_list through ViewHolderData() function */
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.games_list,null,false);
         return new ViewHolderData(view);
     }
 
@@ -46,7 +45,7 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolderData
 
         TextView date, points, level, kills, deaths;
 
-        public ViewHolderData(@NonNull View itemView) { /** Creem una referència per modificar el idData (Del layout item_list) */
+        public ViewHolderData(@NonNull View itemView) { /** We make references in order to modify the data from the layout game_list */
             super(itemView);
 
             date = itemView.findViewById(R.id.dateText);

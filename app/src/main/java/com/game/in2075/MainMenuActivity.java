@@ -87,4 +87,11 @@ public class MainMenuActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    public void onBackPressed()
+    {
+        Toast.makeText(this, "See you soon soldier!", Toast.LENGTH_SHORT).show();
+        finish();
+    }
+
 }

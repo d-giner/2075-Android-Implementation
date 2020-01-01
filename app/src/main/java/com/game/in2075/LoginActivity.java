@@ -5,16 +5,15 @@ import android.app.Dialog;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.view.Window;
 import android.widget.Button;
 import android.widget.TextView;
 import android.content.Intent;
+import android.widget.Toast;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
-import com.game.in2075.Retrofit.Json2075API;
+
 import com.game.in2075.Retrofit.JsonClasses.FormReg;
 import com.game.in2075.Retrofit.JsonClasses.SharedData;
 import com.game.in2075.Retrofit.JsonClasses.UserTO;
@@ -33,7 +32,7 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_login);
         /** New code from here */
 
         getSupportActionBar().hide();
@@ -99,8 +98,8 @@ public class LoginActivity extends AppCompatActivity {
                     return;
                 } else {
                     UserTO userResponse = new Gson().fromJson(questions.getAsJsonObject(), UserTO.class); //Obtain the JsonObject and transform to type UserTO
-                    userVerified = true;
-                    showWarning(userResponse,"");
+                    //userVerified = true;
+                    goIn(userResponse);
                 }
             }
 
@@ -119,25 +118,35 @@ public class LoginActivity extends AppCompatActivity {
         closeWarning = (TextView) myDialog.findViewById(R.id.closeTxt);
         warningMsg = (TextView) myDialog.findViewById(R.id.warningtTxt);
 
-        if (userVerified && u != null)
-            warningMsg.setText("Welcome back: " + u.getUsername() + "\n\n" + "We were missing you!");
-        else
+//        if (userVerified && u != null) {
+//            //warningMsg.setText("Welcome back: " + u.getUsername() + "\n\n" + "We were missing you!");
+//        }
+//        else
             warningMsg.setText(s);
 
         closeWarning.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 myDialog.dismiss();
-                if (userVerified) {
-                    Intent intent = new Intent (v.getContext(), MainMenuActivity.class); /** Go to Main Nav. Menu Activy if login success*/
-                    startActivityForResult(intent, 0);
-                    sharedData.setUser(auxUser);
-                    userVerified = false;
-                    finish();
-                }
+//                if (userVerified) {
+//                    Intent intent = new Intent (v.getContext(), MainMenuActivity.class); /** Go to Main Nav. Menu Activy if login success*/
+//                    startActivityForResult(intent, 0);
+//                    sharedData.setUser(auxUser);
+//                    userVerified = false;
+//                    finish();
+//                }
             }
         });
         myDialog.show();
+    }
+
+    public void goIn(UserTO u){
+        Toast.makeText(this, "Welcome back " + u.getUsername() + "\n\n" + "We were missing you!", Toast.LENGTH_LONG).show();
+        Intent intent = new Intent (this, MainMenuActivity.class); /** Go to Main Nav. Menu Activy if login success*/
+        startActivityForResult(intent, 0);
+        sharedData.setUser(u);
+        //userVerified = false;
+        finish();
     }
 
     /** -^- END LOGIN AND REGISTRATION -^- */

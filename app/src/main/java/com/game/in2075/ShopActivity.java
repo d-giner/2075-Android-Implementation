@@ -50,4 +50,14 @@ public class ShopActivity extends AppCompatActivity {
             }
         });
     }
+
+    @Override
+    public void onBackPressed()
+    {
+        Intent intent1 = new Intent(getApplicationContext(),MainMenuActivity.class);
+        startActivity(intent1);
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
+        finish();
+    }
+
 }

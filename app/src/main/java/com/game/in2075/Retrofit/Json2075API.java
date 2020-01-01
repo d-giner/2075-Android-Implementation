@@ -2,6 +2,7 @@ package com.game.in2075.Retrofit;
 
 import com.game.in2075.Retrofit.JsonClasses.FormReg;
 import com.game.in2075.Retrofit.JsonClasses.Game;
+import com.game.in2075.Retrofit.JsonClasses.Obj;
 import com.google.gson.JsonElement;
 
 import java.util.*;
@@ -29,4 +30,7 @@ public interface Json2075API {
 
     @GET("stats/myGame/{userId}")
     Call<List<Game>> getUserGames(@Path("userId") int userId);
+
+    @GET("stats/myObj/{userId}")
+    Call<List<Obj>> getUserInventory(@Path("userId") int userId);
 }

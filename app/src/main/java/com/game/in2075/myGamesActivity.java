@@ -8,7 +8,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
 
-import com.game.in2075.Retrofit.JsonClasses.DataAdapter;
+import com.game.in2075.Retrofit.JsonClasses.DataAdapterGames;
 import com.game.in2075.Retrofit.JsonClasses.Game;
 import com.game.in2075.Retrofit.JsonClasses.SharedData;
 
@@ -57,7 +57,7 @@ public class myGamesActivity extends AppCompatActivity {
                 } else {
                     List<Game> myGames = response.body();
                     //errorInfoTxt.setText(myGames.get(0).getData());
-                    recyclerList.setAdapter(new DataAdapter(myGames));
+                    recyclerList.setAdapter(new DataAdapterGames(myGames));
                 }
             }
 
@@ -67,6 +67,4 @@ public class myGamesActivity extends AppCompatActivity {
             }
         });
     }
-
-
 }
