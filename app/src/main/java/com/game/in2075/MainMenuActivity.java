@@ -27,7 +27,7 @@ public class MainMenuActivity extends AppCompatActivity {
         settingsBttn = findViewById(R.id.startGameButton);
         userDataTxt = findViewById(R.id.userNameText);
 
-        //We inicialize the bottom navigation menu
+        //We inicialize the bottom image_objects menu
         BottomNavigationView bottomNavigationView = (BottomNavigationView)findViewById(R.id.bottomNavView_Bar);
         Menu menu = bottomNavigationView.getMenu();
         MenuItem menuItem = menu.getItem(0);

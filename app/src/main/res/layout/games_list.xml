@@ -5,9 +5,9 @@
 
     <LinearLayout
         android:layout_width="380dp"
-        android:layout_height="310dp"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:background="@drawable/button_background_mygames"
+        android:background="@drawable/background_button_mygames"
         android:layout_gravity="center"
         android:layout_marginBottom="8dp"
         android:layout_marginTop="8dp">
@@ -106,7 +106,7 @@
         android:textSize="18sp"
         android:layout_marginTop="8dp"
         android:layout_marginLeft="32dp"
-        android:layout_marginBottom="16dp"/>
+        android:layout_marginBottom="8dp"/>
 </LinearLayout>
 
 </LinearLayout>

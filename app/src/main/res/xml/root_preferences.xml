@@ -17,7 +17,7 @@
 <PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <PreferenceCategory app:title="@string/messages_header">
+    <PreferenceCategory app:title="Account Settings">
 
         <Preference
             app:key="delete_account"
@@ -29,34 +29,23 @@
                 android:targetClass="com.game.in2075.DeleteUserActivity" />
             </Preference>
 
-        <EditTextPreference
-            app:key="signature"
-            app:title="@string/signature_title"
-            app:useSimpleSummaryProvider="true" />
-
-        <ListPreference
-            app:defaultValue="reply"
-            app:entries="@array/reply_entries"
-            app:entryValues="@array/reply_values"
-            app:key="reply"
-            app:title="@string/reply_title"
-            app:useSimpleSummaryProvider="true" />
+        <Preference
+            app:key="change_password"
+            app:title="Change password"
+            app:summary="Here you can change your password." >
+            <intent
+                android:action="android.intent.action.VIEW"
+                android:targetPackage="com.game.in2075"
+                android:targetClass="com.game.in2075.UpdatePasswordActivity" />
+        </Preference>
 
     </PreferenceCategory>
 
-    <PreferenceCategory app:title="@string/sync_header">
+    <PreferenceCategory app:title="Sound">
 
         <SwitchPreferenceCompat
             app:key="sync"
-            app:title="@string/sync_title" />
-
-        <SwitchPreferenceCompat
-            app:dependency="sync"
-            app:key="attachment"
-            app:summaryOff="@string/attachment_summary_off"
-            app:summaryOn="@string/attachment_summary_on"
-            app:title="@string/attachment_title" />
-
+            app:title="Enable or unable the sound." />
     </PreferenceCategory>
 
 </PreferenceScreen>

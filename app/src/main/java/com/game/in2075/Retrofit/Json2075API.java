@@ -3,6 +3,7 @@ package com.game.in2075.Retrofit;
 import com.game.in2075.Retrofit.JsonClasses.FormReg;
 import com.game.in2075.Retrofit.JsonClasses.Game;
 import com.game.in2075.Retrofit.JsonClasses.Obj;
+import com.game.in2075.Retrofit.JsonClasses.UserTO;
 import com.google.gson.JsonElement;
 
 import java.util.*;
@@ -23,7 +24,10 @@ public interface Json2075API {
     Call<FormReg> setUserReg(@Body FormReg u);
 
     @POST("authent/log")
-    Call<JsonElement> setUserLog(@Body FormReg u);
+    Call<JsonElement> setUserLog(@Body FormReg u); //JsonElement type because we send FormReg instance and we will receive a UserTO instance as a response.
+
+    @POST("authent/updatePassword")
+    Call<Void> updateUserPassword(@Body UserTO u); //Void type because the response that we will receive, do not have any "body or class instance".
 
     @DELETE("authent/del/{username}/")
     Call<Void> setUserDel(@Path("username") String username);

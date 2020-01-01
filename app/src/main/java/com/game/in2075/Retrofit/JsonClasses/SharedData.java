@@ -2,6 +2,9 @@ package com.game.in2075.Retrofit.JsonClasses;
 
 import com.game.in2075.Retrofit.Json2075API;
 
+import java.util.LinkedList;
+import java.util.List;
+
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -11,6 +14,7 @@ public class SharedData {
 
     private UserTO user;
     private Json2075API jsonAPI;
+    private LinkedList<Obj> userInventory = new LinkedList<Obj>();
 
     public static SharedData getInstance(){
         if (instance == null){
@@ -29,6 +33,14 @@ public class SharedData {
 
      public UserTO getUser(){
         return this.user;
+     }
+
+     public void setUserInventory(LinkedList<Obj> l){
+        this.userInventory.addAll(l);
+     }
+
+     public LinkedList<Obj> getUserInventory(){
+        return this.userInventory;
      }
 
      public Json2075API useRetrofit(){

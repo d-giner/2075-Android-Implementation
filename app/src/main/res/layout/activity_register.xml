@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".RegisterActivity"
-    android:background="@drawable/reg_activity_background">
+    android:background="@drawable/background_reg_activity">
 
 
     <Button
@@ -38,7 +38,7 @@
         app:layout_constraintTop_toBottomOf="@+id/regButton" />
 
     <EditText
-        android:id="@+id/userText"
+        android:id="@+id/oldPassText"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_marginStart="32dp"
@@ -71,7 +71,7 @@
         android:textColor="#18FFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/userText" />
+        app:layout_constraintTop_toBottomOf="@+id/oldPassText" />
 
     <EditText
         android:id="@+id/nameText"
@@ -104,7 +104,7 @@
         android:textColor="@color/White"
         android:textSize="33sp"
         android:textStyle="bold|italic"
-        app:layout_constraintBottom_toTopOf="@+id/userText"
+        app:layout_constraintBottom_toTopOf="@+id/oldPassText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

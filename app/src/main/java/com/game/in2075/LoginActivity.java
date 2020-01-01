@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.content.Intent;
 import android.widget.Toast;
@@ -25,6 +26,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private TextView userTxt, passTxt;
     private Boolean userVerified = false;
+    private ImageView creator;
     private Button logButt, regButt;
     private Dialog myDialog;
     private SharedData sharedData = SharedData.getInstance();
@@ -41,8 +43,16 @@ public class LoginActivity extends AppCompatActivity {
 
         logButt = findViewById(R.id.logButton);
         regButt = findViewById(R.id.regButton);
-        userTxt = findViewById(R.id.userText);
+        userTxt = findViewById(R.id.oldPassText);
         passTxt = findViewById(R.id.passText);
+        creator = findViewById(R.id.imageLogoView);
+
+        creator.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getApplicationContext(),"Created by: daniel.giner.gil@estudiant.upc.edu",Toast.LENGTH_SHORT).show();
+            }
+        });
 
         loginUser(); //We let ready the buttons to execute the functions on click
         registerUser();

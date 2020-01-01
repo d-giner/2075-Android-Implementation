@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".myGamesActivity"
-    android:background="@drawable/mygames_background">
+    android:background="@drawable/background_mygames">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/myRecycler"

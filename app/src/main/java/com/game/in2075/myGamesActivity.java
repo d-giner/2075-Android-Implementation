@@ -29,6 +29,8 @@ public class myGamesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_games);
 
+        getSupportActionBar().hide();
+
         errorInfoTxt = findViewById(R.id.errorInfoText);
         recyclerList = findViewById(R.id.myRecycler);
 

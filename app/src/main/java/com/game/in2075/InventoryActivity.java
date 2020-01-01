@@ -36,12 +36,14 @@ public class InventoryActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inventory);
 
+        getSupportActionBar().hide();
+
         errorInfoTxt = findViewById(R.id.errorInfoText);
         recyclerList = findViewById(R.id.myRecycler);
 
         recyclerList.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false));
 
-        //We inicialize the bottom navigation menu
+        //We inicialize the bottom image_objects menu
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavView_Bar);
         Menu menu = bottomNavigationView.getMenu();
         MenuItem menuItem = menu.getItem(2);

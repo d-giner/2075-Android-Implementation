@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".InventoryActivity"
-    android:background="@drawable/inventory_background">
+    android:background="@drawable/background_inventory">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/myRecycler"
@@ -44,8 +44,8 @@
             android:layout_height="match_parent"
             android:id="@+id/bottomNavView_Bar"
             android:background="#7790CAF9"
-            app:menu="@menu/bottom_nav_menu"
-            app:itemIconTint="@color/nav_item_colors"
+            app:menu="@menu/bottom_nav_items_menu"
+            app:itemIconTint="@color/colors_bottom_nav_items_menu"
             app:itemTextColor="#000000">
         </com.google.android.material.bottomnavigation.BottomNavigationView>
     </RelativeLayout>

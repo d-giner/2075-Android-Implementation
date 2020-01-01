@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".StatsActivity"
-    android:background="@drawable/user_profile_background">
+    android:background="@drawable/background_user_profile">
 
     <TextView
         android:id="@+id/userIdText"
@@ -179,9 +179,9 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="#7790CAF9"
-            app:itemIconTint="@color/nav_item_colors"
+            app:itemIconTint="@color/colors_bottom_nav_items_menu"
             app:itemTextColor="#000000"
-            app:menu="@menu/bottom_nav_menu">
+            app:menu="@menu/bottom_nav_items_menu">
         </com.google.android.material.bottomnavigation.BottomNavigationView>
     </RelativeLayout>
 

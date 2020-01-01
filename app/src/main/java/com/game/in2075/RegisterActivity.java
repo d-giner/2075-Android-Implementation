@@ -3,22 +3,18 @@ package com.game.in2075;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Dialog;
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.game.in2075.Retrofit.Json2075API;
 import com.game.in2075.Retrofit.JsonClasses.FormReg;
 import com.game.in2075.Retrofit.JsonClasses.SharedData;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -38,7 +34,7 @@ public class RegisterActivity extends AppCompatActivity {
 
         regBttn = findViewById(R.id.regButton);
         cancelBttn = findViewById(R.id.cancelButton);
-        userTxt = findViewById(R.id.userText);
+        userTxt = findViewById(R.id.oldPassText);
         passTxt = findViewById(R.id.passText);
         nameTxt = findViewById(R.id.nameText);
 
@@ -109,7 +105,7 @@ public class RegisterActivity extends AppCompatActivity {
         });
     }
 
-    //Callable Layout for warnings. Now is used for main_menu_background
+    //Callable Layout for warnings. Now is used for background_main_menu
     public void showWarning(FormReg u, String s){
         TextView closeWarning, warningMsg;
         msgDialog.setContentView(R.layout.popup_messages);
