@@ -194,6 +194,7 @@ public class LoginActivity extends AppCompatActivity {
                 myDialog.dismiss();
             }
         });
+        myDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
         myDialog.show();
     }
 }

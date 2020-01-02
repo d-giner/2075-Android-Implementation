@@ -3,6 +3,7 @@ package com.game.in2075;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -21,7 +22,7 @@ import java.util.LinkedList;
 
 public class ShopActivity extends AppCompatActivity {
 
-    private TextView userMoneyTxt, shoppingCounterTxt;
+    private TextView userMoneyTxt, shoppingCounterTxt, totalPriceTxt;
     private TextView itemTxt1, atkTxt1, defTxt1, priceTxt1;
     private TextView itemTxt2, atkTxt2, defTxt2, priceTxt2;
     private TextView itemTxt3, atkTxt3, defTxt3, priceTxt3;
@@ -35,6 +36,7 @@ public class ShopActivity extends AppCompatActivity {
     private Boolean obj1, obj2, obj3, obj4, obj5;
     private int userWallet = sharedData.getUser().getMoney();
     private int totalPurchasePrice = 0;
+    private Dialog listDialog, confDialog, inspDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,9 +80,14 @@ public class ShopActivity extends AppCompatActivity {
 
         shoppingList = new LinkedList<>();
 
+        listDialog = new Dialog(this);
+        confDialog = new Dialog(this);
+        inspDialog =  new Dialog(this);
+
         //Variables to show the parameters of the items
         userMoneyTxt = findViewById(R.id.userMoneyText);
         shoppingCounterTxt = findViewById(R.id.shoppingListCounterText);
+        totalPriceTxt = findViewById(R.id.totalPriceText);
         itemTxt1 = findViewById(R.id.itemText1);
         atkTxt1 = findViewById(R.id.atkText1);
         defTxt1 = findViewById(R.id.defText1);
@@ -141,28 +148,75 @@ public class ShopActivity extends AppCompatActivity {
         atkTxt3.append(String.valueOf(sharedData.getShopItems().get(2).getObjAttack()));
         defTxt3.append(String.valueOf(sharedData.getShopItems().get(2).getObjDefense()));
         priceTxt3.append(String.valueOf(sharedData.getShopItems().get(2).getPrice()));
-        //defTxt3.append(String.valueOf(sharedData.getShopItems().get(2).getObjDefense()));
-        //priceTxt3.append(String.valueOf(sharedData.getShopItems().get(2).getPrice()));
+        shoppingCounterTxt.setVisibility(View.GONE);
 
         //We set the behavioural of the images On Click
         ins1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                TextView closeWarning, warningMsg;
+                listDialog.setContentView(R.layout.inspect_item_messages);
+                closeWarning = listDialog.findViewById(R.id.closeTxt);
+                warningMsg = listDialog.findViewById(R.id.warningtTxt);
+                warningMsg.setText("The Lightsaber increases" + "\n\n");
+                int a = sharedData.getShopItems().get(0).getObjAttack() + sharedData.getUser().getAttack();
+                warningMsg.append("your attack from: " + sharedData.getUser().getAttack() + " to: " + a + "\n");
+                warningMsg.append("\n" + "I would recommend that you always carry one with you!");
 
+                closeWarning.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        listDialog.dismiss();
+                    }
+                });
+                listDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+                listDialog.show();
             }
         });
 
         ins2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                TextView closeWarning, warningMsg;
+                listDialog.setContentView(R.layout.inspect_item_messages);
+                closeWarning = listDialog.findViewById(R.id.closeTxt);
+                warningMsg = listDialog.findViewById(R.id.warningtTxt);
+                warningMsg.setText("The Great Shield increases" + "\n\n");
+                int a = sharedData.getShopItems().get(1).getObjDefense() + sharedData.getUser().getDefense();
+                warningMsg.append("your defense from: " + sharedData.getUser().getDefense() + " to: " + a + "\n");
+                warningMsg.append("\n" + "Could you survive without one?");
 
+                closeWarning.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        listDialog.dismiss();
+                    }
+                });
+                listDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+                listDialog.show();
             }
         });
 
         ins3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                TextView closeWarning, warningMsg;
+                listDialog.setContentView(R.layout.inspect_item_messages);
+                closeWarning = listDialog.findViewById(R.id.closeTxt);
+                warningMsg = listDialog.findViewById(R.id.warningtTxt);
+                warningMsg.setText("The Helmet increases" + "\n\n");
+                int a = sharedData.getShopItems().get(2).getObjDefense() + sharedData.getUser().getDefense();
+                warningMsg.append("your defense from: " + sharedData.getUser().getDefense() + " to: " + a + "\n");
+                warningMsg.append("\n" + "Protect your ideas!");
 
+                closeWarning.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        listDialog.dismiss();
+                    }
+                });
+                listDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+                listDialog.show();
             }
         });
 
@@ -183,7 +237,9 @@ public class ShopActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(),"Lightsaber added to shopping list.",Toast.LENGTH_SHORT).show();
                     shoppingList.add(sharedData.getShopItems().get(0));
                     totalPurchasePrice+=sharedData.getShopItems().get(0).getPrice();
+                    totalPriceTxt.setText("Total: " + String.valueOf(totalPurchasePrice));
                     shoppingCounterTxt.setText(String.valueOf(shoppingList.size()));
+                    shoppingCounterTxt.setVisibility(View.VISIBLE);
                     obj1 = true;
                 }
                 else if (obj1)
@@ -203,7 +259,9 @@ public class ShopActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(),"Great Shield added to shopping list.",Toast.LENGTH_SHORT).show();
                     shoppingList.add(sharedData.getShopItems().get(1));
                     totalPurchasePrice+=sharedData.getShopItems().get(1).getPrice();
-                    shoppingCounterTxt.setText(String.valueOf(shoppingList.size()));
+                    totalPriceTxt.setText("Total: " + String.valueOf(totalPurchasePrice));
+                    shoppingCounterTxt.append(String.valueOf(shoppingList.size()));
+                    shoppingCounterTxt.setVisibility(View.VISIBLE);
                     obj2 = true;
                 }
                 else if (obj2)
@@ -224,7 +282,9 @@ public class ShopActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(),"Helmet added to shopping list.",Toast.LENGTH_SHORT).show();
                     shoppingList.add(sharedData.getShopItems().get(2));
                     totalPurchasePrice+=sharedData.getShopItems().get(2).getPrice();
+                    totalPriceTxt.setText("Total: " + String.valueOf(totalPurchasePrice));
                     shoppingCounterTxt.setText(String.valueOf(shoppingList.size()));
+                    shoppingCounterTxt.setVisibility(View.VISIBLE);
                     obj3 = true;
                 }
                 else if (obj3)
@@ -246,6 +306,8 @@ public class ShopActivity extends AppCompatActivity {
 //                    shoppingList.add(sharedData.getShopItems().get(3));
 //                    totalPurchasePrice+=sharedData.getShopItems().get(3).getPrice();
                 //        shoppingCounterTxt.setText(String.valueOf(shoppingList.size()));
+                //totalPriceTxt.setText("Total: " + String.valueOf(totalPurchasePrice));
+                //shoppingCounterTxt.setVisibility(View.VISIBLE);
 //                    obj4 = true;
 //                }
 //                else if (obj4)
@@ -266,6 +328,8 @@ public class ShopActivity extends AppCompatActivity {
 //                    shoppingList.add(sharedData.getShopItems().get(4));
 //                    totalPurchasePrice+=sharedData.getShopItems().get(4).getPrice();
                 //        shoppingCounterTxt.setText(String.valueOf(shoppingList.size()));
+                //totalPriceTxt.setText("Total: " + String.valueOf(totalPurchasePrice));
+                //shoppingCounterTxt.setVisibility(View.VISIBLE);
 //                    obj5 = true;
 //                }
 //                else if (obj5)
@@ -275,6 +339,32 @@ public class ShopActivity extends AppCompatActivity {
             }
         });
 
+        shoppingCounterTxt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (shoppingList.size()>0) {
+                    TextView closeWarning, warningMsg;
+                    listDialog.setContentView(R.layout.shoplist_messages);
+                    closeWarning = listDialog.findViewById(R.id.closeTxt);
+                    warningMsg = listDialog.findViewById(R.id.warningtTxt);
+                    warningMsg.setText("Shopping cart:" + "\n");
+                    for (Obj o : shoppingList){
+                        warningMsg.append("-" + o.getObjName() + "\n");
+                    }
+
+                    closeWarning.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            listDialog.dismiss();
+                        }
+                    });
+                    listDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+                    listDialog.show();
+                }
+            }
+        });
+
+        //Send the shopping list to the backend  if the user confirms the purchase
         confirmPurchaseBttn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -282,13 +372,16 @@ public class ShopActivity extends AppCompatActivity {
             }
         });
 
+        //What to do if cancel button is pressed
         cancelBttn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (shoppingList.size()>0) {
                     shoppingList.clear();
                     totalPurchasePrice = 0;
+                    totalPriceTxt.setText("Total: " + String.valueOf(totalPurchasePrice));
                     shoppingCounterTxt.setText(String.valueOf(shoppingList.size()));
+                    shoppingCounterTxt.setVisibility(View.GONE);
                     obj1 = false;
                     obj2 = false;
                     obj3 = false;

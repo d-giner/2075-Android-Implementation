@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.game.in2075.Retrofit.JsonClasses.SharedData;
@@ -102,12 +103,17 @@ public class DeleteUserActivity extends AppCompatActivity {
     //Callable Layout for warnings. Now is used for delete
     public void showWarning(String u){
         TextView closeWarning, warningMsg;
+        ImageView warningImg;
         popDialog.setContentView(R.layout.popup_messages);
-        closeWarning = (TextView) popDialog.findViewById(R.id.closeTxt);
-        warningMsg = (TextView) popDialog.findViewById(R.id.warningtTxt);
+        closeWarning = popDialog.findViewById(R.id.closeTxt);
+        warningMsg = popDialog.findViewById(R.id.warningtTxt);
+        warningImg = popDialog.findViewById(R.id.warningImage);
 
-        if (userVerified)
+        if (userVerified) {
             warningMsg.setText(u);
+            warningImg.setImageResource(R.drawable.bye_bye);
+        }
+
         else
             warningMsg.setText(u);
 
@@ -126,6 +132,7 @@ public class DeleteUserActivity extends AppCompatActivity {
                 }
             }
         });
+        popDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
         popDialog.show();
     }
 }

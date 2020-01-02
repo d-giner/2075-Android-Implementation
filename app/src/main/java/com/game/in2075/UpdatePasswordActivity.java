@@ -124,6 +124,7 @@ public class UpdatePasswordActivity extends AppCompatActivity {
             }
         });
         msgDialog.show();
+        msgDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
     }
 
 

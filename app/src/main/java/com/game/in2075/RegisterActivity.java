@@ -134,5 +134,6 @@ public class RegisterActivity extends AppCompatActivity {
             }
         });
         msgDialog.show();
+        msgDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
     }
 }

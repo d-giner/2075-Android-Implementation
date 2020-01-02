@@ -9,22 +9,22 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/button_rounded_dark"
+        android:background="@drawable/button_rounded_solidwhite"
         android:orientation="vertical">
 
 
-    <TextView
-        android:id="@+id/closeTxt"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:textColor="@color/White"
-        android:text="X"
-        android:textStyle="bold"
-        android:layout_gravity="end"
-        android:gravity="center"
-        android:layout_marginTop="5dp"
-        android:layout_marginEnd="5dp"
-        android:background="@drawable/cerclebackground"/>
+        <TextView
+            android:id="@+id/closeTxt"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="end"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="5dp"
+            android:background="@drawable/cerclebackground_black"
+            android:gravity="center"
+            android:text="X"
+            android:textColor="@android:color/black"
+            android:textStyle="bold" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -37,7 +37,7 @@
             android:layout_height="87dp"
             android:layout_gravity="center"
             android:foregroundGravity="center"
-            android:src="@drawable/icon"/>
+            android:src="@drawable/pigy_shop"/>
 
         <TextView
             android:id="@+id/warningtTxt"
@@ -46,11 +46,12 @@
             android:textColor="@color/SpacialOrange"
             android:layout_gravity="center"
             android:gravity="center"
+            android:fontFamily="@font/press_start_2p"
             android:layout_marginTop="16dp"
             android:layout_marginBottom="16dp"
-            android:text="Warning!"
+            android:text="Shopping cart:"
             android:textStyle="bold"
-            android:textSize="20dp"/>
+            android:textSize="11sp"/>
     </LinearLayout>
 
     </LinearLayout>

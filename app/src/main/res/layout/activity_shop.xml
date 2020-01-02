@@ -21,6 +21,32 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
+        android:id="@+id/shoppingListCounterText"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/cercle_shopping_background"
+        android:elevation="5dp"
+        android:fontFamily="sans-serif"
+        android:gravity="center"
+        android:text="0"
+        android:textAlignment="center"
+        android:textColor="@android:color/black"
+        app:layout_constraintBottom_toTopOf="@+id/scrollView2"
+        app:layout_constraintEnd_toStartOf="@+id/userMoneyText"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:layout_width="34dp"
+        android:layout_height="32dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="14dp"
+        android:background="@drawable/ic_shopping"
+        app:layout_constraintEnd_toStartOf="@+id/userMoneyText"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
         android:id="@+id/userMoneyText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -601,11 +627,31 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="8dp"
+                android:background="#85000000">
+
+                <TextView
+                    android:id="@+id/totalPriceText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="50dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="4dp"
+                    android:fontFamily="@font/press_start_2p"
+                    android:text="Total: 0"
+                    android:textColor="@color/White"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:layout_gravity="center"
                 android:gravity="center"
-                android:layout_marginTop="16dp">
+                android:layout_marginTop="8dp">
 
                 <Button
                     android:id="@+id/confirmPurchaseButton"
@@ -627,7 +673,6 @@
                     android:layout_marginStart="16dp"
                     android:background="@drawable/button_rounded_red"/>
             </LinearLayout>
-
 
         </LinearLayout>
 
@@ -651,16 +696,5 @@
             app:itemTextColor="#000000"
             app:menu="@menu/bottom_nav_items_menu"></com.google.android.material.bottomnavigation.BottomNavigationView>
     </RelativeLayout>
-
-    <TextView
-        android:id="@+id/shoppingListCounterText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="11dp"
-        android:layout_marginEnd="8dp"
-        android:text="0"
-        app:layout_constraintBottom_toTopOf="@+id/scrollView2"
-        app:layout_constraintEnd_toStartOf="@+id/userMoneyText"
-        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
