@@ -33,6 +33,9 @@ public class UpdatePasswordActivity extends AppCompatActivity {
         getSupportActionBar().hide();
 
         msgDialog = new Dialog(this);
+        msgDialog.setCancelable(false);
+        msgDialog.setCanceledOnTouchOutside(false);
+
         updateBttn = findViewById(R.id.updateButton);
         cancelBttn = findViewById(R.id.cancelButton);
         oldPassTxt = findViewById(R.id.oldPassText);

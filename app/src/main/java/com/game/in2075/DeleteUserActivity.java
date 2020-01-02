@@ -32,6 +32,8 @@ public class DeleteUserActivity extends AppCompatActivity {
         getSupportActionBar().hide();
 
         popDialog = new Dialog(this);
+        popDialog.setCancelable(false);
+        popDialog.setCanceledOnTouchOutside(false);
 
         delBttn = findViewById(R.id.deleteButton);
         cancelBttn = findViewById(R.id.cancelButton);

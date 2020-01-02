@@ -9,7 +9,7 @@ public class Obj {
     private int price;
     private int healthPoints;
 
-    public Obj ( String idUser,String objName, int objAttack, int  objDefense, int price, int healthPoints){
+    public Obj (String idUser, String objName, int objAttack, int  objDefense, int price, int healthPoints){
         this.idUser = idUser;
         this.objName = objName;
         this.objAttack = objAttack;

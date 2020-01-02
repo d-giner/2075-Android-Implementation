@@ -14,6 +14,7 @@ public class SharedData {
     private UserTO user;
     private Json2075API jsonAPI;
     private LinkedList<Obj> userInventory = null;
+    private LinkedList<Obj> shopItems = null;
     private Boolean  lightsaber, helmet, greatShield;
 
     public static SharedData getInstance(){
@@ -36,7 +37,7 @@ public class SharedData {
      }
 
      public void setUserInventory(LinkedList<Obj> li){
-         userInventory = new LinkedList<>();
+         this.userInventory = new LinkedList<>();
         this.userInventory.addAll(li);
 
         this.lightsaber = false;
@@ -61,6 +62,15 @@ public class SharedData {
      public LinkedList<Obj> getUserInventory(){
         return this.userInventory;
      }
+
+    public LinkedList<Obj> getShopItems() {
+        return shopItems;
+    }
+
+    public void setShopItems(LinkedList<Obj> sI) {
+        this.shopItems = new LinkedList<>();
+        this.shopItems.addAll(sI);
+    }
 
     public Boolean getLightsaber() {
         return lightsaber;

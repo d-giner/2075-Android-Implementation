@@ -39,6 +39,8 @@ public class RegisterActivity extends AppCompatActivity {
         nameTxt = findViewById(R.id.nameText);
 
         msgDialog = new Dialog(this);
+        msgDialog.setCancelable(false);
+        msgDialog.setCanceledOnTouchOutside(false);
 
         cancelRegister();
         registerUser();

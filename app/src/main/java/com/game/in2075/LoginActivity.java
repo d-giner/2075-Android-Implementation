@@ -127,6 +127,17 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
+    //Function that starts next activity in case of successful login
+    public void goIn(UserTO u){
+        Toast.makeText(this, "Welcome back " + u.getUsername() + "\n\n" + "We were missing you!", Toast.LENGTH_LONG).show();
+        sharedData.setUser(u);
+        getInventory();
+        loadShopItems();
+        Intent intent = new Intent (this, MainMenuActivity.class); /** Go to Main Nav. Menu Activy if login success*/
+        startActivityForResult(intent, 0);
+        finish();
+    }
+
     //Requesting the user inventory to backend
     public void getInventory(){
         Call<LinkedList<Obj>> call = sharedData.useRetrofit().getUserInventory(sharedData.getUser().getID());
@@ -156,18 +167,18 @@ public class LoginActivity extends AppCompatActivity {
                 Log.d("JSON", t.toString());
             }
         });
-
     }
 
-    //Function that starts next activity in case of successful login
-    public void goIn(UserTO u){
-        Toast.makeText(this, "Welcome back " + u.getUsername() + "\n\n" + "We were missing you!", Toast.LENGTH_LONG).show();
-        sharedData.setUser(u);
-        getInventory();
-        Intent intent = new Intent (this, MainMenuActivity.class); /** Go to Main Nav. Menu Activy if login success*/
-        startActivityForResult(intent, 0);
-        finish();
+    public void loadShopItems(){
+        LinkedList<Obj> itemsList = new LinkedList<>();
+        itemsList.add(new Obj(String.valueOf(sharedData.getUser().getID()), "Lightsaber", 120, 0, 100, 100));
+        itemsList.add(new Obj(String.valueOf(sharedData.getUser().getID()), "Great Shield", 0, 50, 50, 100));
+        itemsList.add(new Obj(String.valueOf(sharedData.getUser().getID()), "Helmet", 0, 10, 10, 100));
+        //itemsList.add(new Obj(String.valueOf(sharedData.getUser().getID()), "Lightsaber", 120, 0, 0, 100));
+        //itemsList.add(new Obj(String.valueOf(sharedData.getUser().getID()), "Lightsaber", 120, 0, 0, 100));
+        sharedData.setShopItems(itemsList);
     }
+
 
     //Callable Layout for warnings.
     public void showWarning(String s){
