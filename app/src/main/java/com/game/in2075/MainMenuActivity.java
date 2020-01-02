@@ -12,12 +12,14 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.game.in2075.Retrofit.JsonClasses.SharedData;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainMenuActivity extends AppCompatActivity {
 
     private Button settingsBttn;
     private TextView userDataTxt;
+    private SharedData sharedData = SharedData.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,10 +48,10 @@ public class MainMenuActivity extends AppCompatActivity {
                         finish();
                         break;
                     case R.id.ic_inventory:
-                        Intent intent2 = new Intent(getApplicationContext(),InventoryActivity.class);
-                        startActivity(intent2);
-                        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-                        finish();
+                            Intent intent2 = new Intent(getApplicationContext(), InventoryActivity.class);
+                            startActivity(intent2);
+                            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+                            finish();
                         break;
                     case R.id.ic_shop:
                         Intent intent3 = new Intent(getApplicationContext(),ShopActivity.class);

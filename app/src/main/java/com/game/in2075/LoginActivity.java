@@ -125,7 +125,7 @@ public class LoginActivity extends AppCompatActivity {
 
     //Function that starts next activity in case of successful login
     public void goIn(UserTO u){
-        Toast.makeText(this, "Welcome back " + u.getUsername() + "\n\n" + "We were missing you!", Toast.LENGTH_LONG).show();
+        Toast.makeText(this, "Welcome back " + u.getUsername() + "\n\n" + "We were missing you!", Toast.LENGTH_SHORT).show();
         sharedData.setUser(u);
         getInventory();
         loadShopItems();
@@ -145,7 +145,8 @@ public class LoginActivity extends AppCompatActivity {
                 if(!response.isSuccessful()){
                     switch (response.code()) {
                         case 404:
-                            errorInfoTxt.setText("Player ID not found.");
+                            sharedData.initializeItemBools(); //This player do not has items, so we need to initialize some things
+
                             break;
                         default:
                             errorInfoTxt.setText("Oops!" + "\n\n" + "Seem something goes wrong :S");
@@ -154,7 +155,7 @@ public class LoginActivity extends AppCompatActivity {
                     return;
                 } else if (response.code() == 201) {
                     LinkedList<Obj> myInventory = response.body();
-                    sharedData.setUserInventory(myInventory); //Saving the user inventory in sharedData singletone class
+                        sharedData.setUserInventory(myInventory); //Saving the user inventory in sharedData singletone class
                 }
             }
 

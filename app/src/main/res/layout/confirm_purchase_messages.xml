@@ -12,6 +12,7 @@
         android:background="@drawable/button_rounded_border_solidwhite"
         android:orientation="vertical">
 
+
         <ImageView
             android:id="@+id/warningImage"
             android:layout_width="116dp"

@@ -32,7 +32,7 @@ public interface Json2075API {
     @POST("shop/purchase")
     Call<Void> setPurchase(@Body LinkedList<Obj> li);
 
-    @POST("authent/updatemoney")
+    @POST("authent/updateMoney")
     Call<Void> updateUserMoney(@Body UserTO u);
 
     @DELETE("authent/del/{username}/")

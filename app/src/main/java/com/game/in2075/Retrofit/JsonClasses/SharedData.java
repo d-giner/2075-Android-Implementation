@@ -36,6 +36,12 @@ public class SharedData {
         return this.user;
      }
 
+     public void initializeItemBools(){
+         this.lightsaber = false;
+         this.greatShield = false;
+         this.helmet = false;
+     }
+
      public void setUserInventory(LinkedList<Obj> li){
          this.userInventory = new LinkedList<>();
         this.userInventory.addAll(li);

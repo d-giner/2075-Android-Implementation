@@ -6,12 +6,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -274,7 +276,7 @@ public class ShopActivity extends AppCompatActivity {
                     shoppingList.add(sharedData.getShopItems().get(1));
                     totalPurchasePrice+=sharedData.getShopItems().get(1).getPrice();
                     totalPriceTxt.setText("Total: " + String.valueOf(totalPurchasePrice));
-                    shoppingCounterTxt.append(String.valueOf(shoppingList.size()));
+                    shoppingCounterTxt.setText(String.valueOf(shoppingList.size()));
                     shoppingCounterTxt.setVisibility(View.VISIBLE);
                     obj2 = true;
                 }
@@ -282,7 +284,6 @@ public class ShopActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(),"You already have a Great Shield in your shopping list.",Toast.LENGTH_SHORT).show();
                 else
                     Toast.makeText(getApplicationContext(),"You do not have enough money." + "\n\n" + "Play to gain it!",Toast.LENGTH_SHORT).show();
-
             }
         });
 
@@ -312,6 +313,7 @@ public class ShopActivity extends AppCompatActivity {
         pur4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Toast.makeText(getApplicationContext(),"New items will be available soon!",Toast.LENGTH_SHORT).show();
 //                if (sharedData.getXXXX())
 //                    Toast.makeText(getApplicationContext(),"You already have a XXXX in your inventory.",Toast.LENGTH_SHORT).show();
 //
@@ -334,6 +336,7 @@ public class ShopActivity extends AppCompatActivity {
         pur5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Toast.makeText(getApplicationContext(),"New items will be available soon!",Toast.LENGTH_SHORT).show();
 //                if (sharedData.getXXXX())
 //                    Toast.makeText(getApplicationContext(),"You already have a XXXX in your inventory.",Toast.LENGTH_SHORT).show();
 //
@@ -398,7 +401,18 @@ public class ShopActivity extends AppCompatActivity {
                             sharedData.getUser().setMoney(m);
                             setPurchase();
                             updateUserMoney();
-                            getInventory();
+
+                            new CountDownTimer(1000, 1000) {
+                                @Override
+                                public void onTick(long millisUntilFinished) {
+                                }
+
+                                @Override
+                                public void onFinish() {
+                                    getInventory();
+                                }
+                            }.start();
+
                             shoppingList.clear();
                             totalPurchasePrice = 0;
                             totalPriceTxt.setText("Total: " + String.valueOf(totalPurchasePrice));
@@ -423,10 +437,9 @@ public class ShopActivity extends AppCompatActivity {
                     });
                     confDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
                     confDialog.show();
-
-
                 }
-
+                else
+                    Toast.makeText(getApplicationContext(), "No there are items in your chart.", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -531,7 +544,7 @@ public class ShopActivity extends AppCompatActivity {
                             break;
                     }
                     return;
-                } else if (response.code() == 201) {
+                } else if(response.code() == 201){
                     LinkedList<Obj> myInventory = response.body();
                     sharedData.setUserInventory(myInventory); //Saving the user inventory in sharedData singletone class
                 }

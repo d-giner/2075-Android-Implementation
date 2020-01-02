@@ -10,7 +10,9 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.game.in2075.Retrofit.JsonClasses.DataAdapterGames;
 import com.game.in2075.Retrofit.JsonClasses.DataAdapterInventory;
@@ -75,7 +77,13 @@ public class InventoryActivity extends AppCompatActivity {
                 return false;
             }
         });
-        recyclerList.setAdapter(new DataAdapterInventory(sharedData.getUserInventory())); //Adding the user inventory to adapter in order to generate the recycler view.
+
+        if (sharedData.getUserInventory() != null)
+            recyclerList.setAdapter(new DataAdapterInventory(sharedData.getUserInventory())); //Adding the user inventory to adapter in order to generate the recycler view.
+        else {
+            Toast.makeText(getApplicationContext(),"Your inventory is empty!",Toast.LENGTH_SHORT).show();
+        }
+
     }
 
 
