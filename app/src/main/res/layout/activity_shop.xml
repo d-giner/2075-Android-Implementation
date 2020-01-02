@@ -4,9 +4,479 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ShopActivity">
+    tools:context=".ShopActivity"
+    android:background="@drawable/background_shop">
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:fontFamily="@font/press_start_2p"
+        android:text="2075 Store"
+        android:textColor="@color/White"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="70dp"
+        android:layout_marginBottom="60dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/relativeLayout2"
+        app:layout_constraintTop_toBottomOf="@+id/textView8"
+        tools:layout_editor_absoluteX="1dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/button_rounded_border_white"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/press_start_2p"
+                    android:text="Lightsaber"
+                    android:textColor="@android:color/black" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/purchase1"
+                            android:layout_width="41dp"
+                            android:layout_height="35dp"
+                            android:layout_gravity="center"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginEnd="16dp"
+                            android:src="@drawable/ic_add_object"
+                            app:layout_constraintEnd_toStartOf="@+id/inspect1"
+                            app:layout_constraintStart_toStartOf="parent"
+                            tools:layout_editor_absoluteY="116dp" />
+
+                        <ImageView
+                            android:id="@+id/inspect1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:src="@drawable/lightsaber"
+                            tools:layout_editor_absoluteX="75dp"
+                            tools:layout_editor_absoluteY="96dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/atkText1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:drawableStart="@mipmap/ic_attack"
+                            android:fontFamily="@font/press_start_2p"
+                            android:gravity="center"
+                            android:text="Attack: "
+                            android:textColor="@android:color/black"
+                            android:textSize="12sp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/inspect1"
+                            tools:layout_editor_absoluteY="96dp" />
+
+                        <TextView
+                            android:id="@+id/defText1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:drawableStart="@mipmap/ic_defense"
+                            android:fontFamily="@font/press_start_2p"
+                            android:gravity="center"
+                            android:text="Defense: 0"
+                            android:textColor="@android:color/black"
+                            android:textSize="12sp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/inspect1"
+                            tools:layout_editor_absoluteY="124dp" />
+
+                        <TextView
+                            android:id="@+id/priceText1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:drawableStart="@mipmap/ic_coins"
+                            android:fontFamily="@font/press_start_2p"
+                            android:gravity="center"
+                            android:text="Price: "
+                            android:textColor="@android:color/black"
+                            android:textSize="12sp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/inspect1"
+                            tools:layout_editor_absoluteY="152dp" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/button_rounded_border_white"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/press_start_2p"
+                    android:text="Great Shield"
+                    android:textColor="@android:color/black" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/purchase2"
+                            android:layout_width="41dp"
+                            android:layout_height="35dp"
+                            android:layout_gravity="center"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginEnd="16dp"
+                            android:src="@drawable/ic_add_object"
+                            app:layout_constraintEnd_toStartOf="@+id/inspect1"
+                            app:layout_constraintStart_toStartOf="parent"
+                            tools:layout_editor_absoluteY="116dp" />
+
+                        <ImageView
+                            android:id="@+id/inspect2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:src="@drawable/shield"
+                            tools:layout_editor_absoluteX="75dp"
+                            tools:layout_editor_absoluteY="96dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/atkText2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:drawableStart="@mipmap/ic_attack"
+                            android:fontFamily="@font/press_start_2p"
+                            android:gravity="center"
+                            android:text="Attack: 0"
+                            android:textColor="@android:color/black"
+                            android:textSize="12sp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/inspect1"
+                            tools:layout_editor_absoluteY="96dp" />
+
+                        <TextView
+                            android:id="@+id/defText2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:drawableStart="@mipmap/ic_defense"
+                            android:fontFamily="@font/press_start_2p"
+                            android:gravity="center"
+                            android:text="Defense: "
+                            android:textColor="@android:color/black"
+                            android:textSize="12sp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/inspect1"
+                            tools:layout_editor_absoluteY="124dp" />
+
+                        <TextView
+                            android:id="@+id/priceText2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:drawableStart="@mipmap/ic_coins"
+                            android:fontFamily="@font/press_start_2p"
+                            android:gravity="center"
+                            android:text="Price: "
+                            android:textColor="@android:color/black"
+                            android:textSize="12sp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/inspect1"
+                            tools:layout_editor_absoluteY="152dp" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/button_rounded_border_white"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/press_start_2p"
+                    android:text="Helmet"
+                    android:textColor="@android:color/black" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/purchase3"
+                            android:layout_width="41dp"
+                            android:layout_height="35dp"
+                            android:layout_gravity="center"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginEnd="16dp"
+                            android:src="@drawable/ic_add_object"
+                            app:layout_constraintEnd_toStartOf="@+id/inspect1"
+                            app:layout_constraintStart_toStartOf="parent"
+                            tools:layout_editor_absoluteY="116dp" />
+
+                        <ImageView
+                            android:id="@+id/inspect3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:src="@drawable/helmet"
+                            tools:layout_editor_absoluteX="75dp"
+                            tools:layout_editor_absoluteY="96dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/atkText3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:drawableStart="@mipmap/ic_attack"
+                            android:fontFamily="@font/press_start_2p"
+                            android:gravity="center"
+                            android:text="Attack: 0"
+                            android:textColor="@android:color/black"
+                            android:textSize="12sp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/inspect1"
+                            tools:layout_editor_absoluteY="96dp" />
+
+                        <TextView
+                            android:id="@+id/defText3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:drawableStart="@mipmap/ic_defense"
+                            android:fontFamily="@font/press_start_2p"
+                            android:gravity="center"
+                            android:text="Defense: "
+                            android:textColor="@android:color/black"
+                            android:textSize="12sp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/inspect1"
+                            tools:layout_editor_absoluteY="124dp" />
+
+                        <TextView
+                            android:id="@+id/priceText3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:drawableStart="@mipmap/ic_coins"
+                            android:fontFamily="@font/press_start_2p"
+                            android:gravity="center"
+                            android:text="Price: "
+                            android:textColor="@android:color/black"
+                            android:textSize="12sp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/inspect1"
+                            tools:layout_editor_absoluteY="152dp" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/button_rounded_border_white"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/press_start_2p"
+                    android:text="O2"
+                    android:textColor="@android:color/black" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/purchase4"
+                            android:layout_width="41dp"
+                            android:layout_height="35dp"
+                            android:layout_gravity="center"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginEnd="16dp"
+                            android:src="@drawable/ic_add_object"
+                            app:layout_constraintEnd_toStartOf="@+id/inspect4"
+                            app:layout_constraintStart_toStartOf="parent"
+                            tools:layout_editor_absoluteY="116dp" />
+
+                        <ImageView
+                            android:id="@+id/inspect4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:src="@drawable/ic_menu_share"
+                            tools:layout_editor_absoluteX="75dp"
+                            tools:layout_editor_absoluteY="96dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/atkText4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:drawableStart="@mipmap/ic_attack"
+                            android:fontFamily="@font/press_start_2p"
+                            android:gravity="center"
+                            android:text="Attack: "
+                            android:textColor="@android:color/black"
+                            android:textSize="12sp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/inspect1"
+                            tools:layout_editor_absoluteY="96dp" />
+
+                        <TextView
+                            android:id="@+id/defText4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:drawableStart="@mipmap/ic_defense"
+                            android:fontFamily="@font/press_start_2p"
+                            android:gravity="center"
+                            android:text="Defense: "
+                            android:textColor="@android:color/black"
+                            android:textSize="12sp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/inspect1"
+                            tools:layout_editor_absoluteY="124dp" />
+
+                        <TextView
+                            android:id="@+id/priceText4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:drawableStart="@mipmap/ic_coins"
+                            android:fontFamily="@font/press_start_2p"
+                            android:gravity="center"
+                            android:text="Price: "
+                            android:textColor="@android:color/black"
+                            android:textSize="12sp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/inspect1"
+                            tools:layout_editor_absoluteY="152dp" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
 
     <RelativeLayout
+        android:id="@+id/relativeLayout2"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -14,14 +484,13 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottomNavView_Bar"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/bottomNavView_Bar"
             android:background="#7790CAF9"
-            app:menu="@menu/bottom_nav_items_menu"
             app:itemIconTint="@color/colors_bottom_nav_items_menu"
-            app:itemTextColor="#000000">
-        </com.google.android.material.bottomnavigation.BottomNavigationView>
+            app:itemTextColor="#000000"
+            app:menu="@menu/bottom_nav_items_menu"></com.google.android.material.bottomnavigation.BottomNavigationView>
     </RelativeLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

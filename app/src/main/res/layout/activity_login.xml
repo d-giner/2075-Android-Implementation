@@ -11,6 +11,7 @@
         android:id="@+id/imageLogoView"
         android:layout_width="215dp"
         android:layout_height="200dp"
+        android:layout_marginTop="32dp"
         android:layout_marginEnd="24dp"
         android:layout_marginBottom="80dp"
         app:layout_constraintBottom_toTopOf="@+id/oldPassText"
@@ -47,7 +48,7 @@
         app:layout_constraintTop_toBottomOf="@+id/logButton" />
 
     <EditText
-        android:id="@+id/oldPassText"
+        android:id="@+id/userText"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_marginStart="32dp"
@@ -75,11 +76,23 @@
         android:drawableLeft="@drawable/ic_action_pass"
         android:ems="10"
         android:hint="Password"
-        android:textColorHint="#E0E0E0"
         android:inputType="textPassword"
         android:textColor="#18FFFF"
+        android:textColorHint="#E0E0E0"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/userText" />
+
+    <TextView
+        android:id="@+id/errorInfoText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
+        android:textAlignment="center"
+        android:textColor="@android:color/holo_red_dark"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/oldPassText" />
+        app:layout_constraintTop_toBottomOf="@+id/regButton" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

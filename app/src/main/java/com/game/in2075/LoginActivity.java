@@ -1,6 +1,9 @@
 package com.game.in2075;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import android.app.Dialog;
 import android.os.Bundle;
 import android.util.Log;
@@ -15,17 +18,21 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import com.game.in2075.Retrofit.JsonClasses.DataAdapterInventory;
 import com.game.in2075.Retrofit.JsonClasses.FormReg;
+import com.game.in2075.Retrofit.JsonClasses.Obj;
 import com.game.in2075.Retrofit.JsonClasses.SharedData;
 import com.game.in2075.Retrofit.JsonClasses.UserTO;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 
+import java.util.LinkedList;
+import java.util.List;
+
 
 public class LoginActivity extends AppCompatActivity {
 
-    private TextView userTxt, passTxt;
-    private Boolean userVerified = false;
+    private TextView userTxt, passTxt, errorInfoTxt;
     private ImageView creator;
     private Button logButt, regButt;
     private Dialog myDialog;
@@ -35,7 +42,6 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        /** New code from here */
 
         getSupportActionBar().hide();
 
@@ -43,9 +49,10 @@ public class LoginActivity extends AppCompatActivity {
 
         logButt = findViewById(R.id.logButton);
         regButt = findViewById(R.id.regButton);
-        userTxt = findViewById(R.id.oldPassText);
+        userTxt = findViewById(R.id.userText);
         passTxt = findViewById(R.id.passText);
         creator = findViewById(R.id.imageLogoView);
+        errorInfoTxt = findViewById(R.id.errorInfoText);
 
         creator.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,7 +65,7 @@ public class LoginActivity extends AppCompatActivity {
         registerUser();
     }
 
-    //Actions of buttons
+    //Actions of login buttons
     private void loginUser(){
         logButt.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,13 +74,14 @@ public class LoginActivity extends AppCompatActivity {
                 String b = passTxt.getText().toString();
 
                 if (a.equals("") || b.equals(""))
-                    showWarning(new UserTO(), "Ey!" + "\n\n" + "Don't leave any field in blank!");
+                    showWarning("Hey!" + "\n\n" + "Don't leave any field in blank!");
                 else
                     logUser();
             }
         });
     }
 
+    //Acces to the register new user activity
     private void registerUser(){
         regButt.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -99,16 +107,15 @@ public class LoginActivity extends AppCompatActivity {
                 if(!response.isSuccessful()){
                     switch (response.code()) {
                         case 403:
-                            showWarning(new UserTO(), "Are you registered?" + "\n\n" + "Seems like user or password is wrong!");
+                            showWarning("Are you registered?" + "\n\n" + "Seems like user or password is wrong!");
                             break;
                         default:
-                            showWarning(new UserTO(), "Oops!" + "\n\n" + "Seem something goes wrong :S");
+                            showWarning("Oops!" + "\n\n" + "Seem something goes wrong :S");
                             break;
                     }
                     return;
-                } else {
+                } else if (response.code() == 200){
                     UserTO userResponse = new Gson().fromJson(questions.getAsJsonObject(), UserTO.class); //Obtain the JsonObject and transform to type UserTO
-                    //userVerified = true;
                     goIn(userResponse);
                 }
             }
@@ -120,45 +127,62 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    //Callable Layout for warnings. Now is used for login
-    public void showWarning(UserTO u, String s){
-        TextView closeWarning, warningMsg;
-        final UserTO auxUser = u;
-        myDialog.setContentView(R.layout.popup_messages);
-        closeWarning = (TextView) myDialog.findViewById(R.id.closeTxt);
-        warningMsg = (TextView) myDialog.findViewById(R.id.warningtTxt);
+    //Requesting the user inventory to backend
+    public void getInventory(){
+        Call<LinkedList<Obj>> call = sharedData.useRetrofit().getUserInventory(sharedData.getUser().getID());
+        call.enqueue(new Callback<LinkedList<Obj>>() {
 
-//        if (userVerified && u != null) {
-//            //warningMsg.setText("Welcome back: " + u.getUsername() + "\n\n" + "We were missing you!");
-//        }
-//        else
-            warningMsg.setText(s);
+            @Override
+            public void onResponse(Call<LinkedList<Obj>> call, Response<LinkedList<Obj>> response) {
+
+                if(!response.isSuccessful()){
+                    switch (response.code()) {
+                        case 404:
+                            errorInfoTxt.setText("Player ID not found.");
+                            break;
+                        default:
+                            errorInfoTxt.setText("Oops!" + "\n\n" + "Seem something goes wrong :S");
+                            break;
+                    }
+                    return;
+                } else if (response.code() == 201) {
+                    LinkedList<Obj> myInventory = response.body();
+                    sharedData.setUserInventory(myInventory); //Saving the user inventory in sharedData singletone class
+                }
+            }
+
+            @Override
+            public void onFailure(Call<LinkedList<Obj>> call, Throwable t) {
+                Log.d("JSON", t.toString());
+            }
+        });
+
+    }
+
+    //Function that starts next activity in case of successful login
+    public void goIn(UserTO u){
+        Toast.makeText(this, "Welcome back " + u.getUsername() + "\n\n" + "We were missing you!", Toast.LENGTH_LONG).show();
+        sharedData.setUser(u);
+        getInventory();
+        Intent intent = new Intent (this, MainMenuActivity.class); /** Go to Main Nav. Menu Activy if login success*/
+        startActivityForResult(intent, 0);
+        finish();
+    }
+
+    //Callable Layout for warnings.
+    public void showWarning(String s){
+        TextView closeWarning, warningMsg;
+        myDialog.setContentView(R.layout.popup_messages);
+        closeWarning = myDialog.findViewById(R.id.closeTxt);
+        warningMsg = myDialog.findViewById(R.id.warningtTxt);
+        warningMsg.setText(s);
 
         closeWarning.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 myDialog.dismiss();
-//                if (userVerified) {
-//                    Intent intent = new Intent (v.getContext(), MainMenuActivity.class); /** Go to Main Nav. Menu Activy if login success*/
-//                    startActivityForResult(intent, 0);
-//                    sharedData.setUser(auxUser);
-//                    userVerified = false;
-//                    finish();
-//                }
             }
         });
         myDialog.show();
     }
-
-    public void goIn(UserTO u){
-        Toast.makeText(this, "Welcome back " + u.getUsername() + "\n\n" + "We were missing you!", Toast.LENGTH_LONG).show();
-        Intent intent = new Intent (this, MainMenuActivity.class); /** Go to Main Nav. Menu Activy if login success*/
-        startActivityForResult(intent, 0);
-        sharedData.setUser(u);
-        //userVerified = false;
-        finish();
-    }
-
-    /** -^- END LOGIN AND REGISTRATION -^- */
-
 }

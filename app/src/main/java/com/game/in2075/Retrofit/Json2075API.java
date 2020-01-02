@@ -36,5 +36,5 @@ public interface Json2075API {
     Call<List<Game>> getUserGames(@Path("userId") int userId);
 
     @GET("stats/myObj/{userId}")
-    Call<List<Obj>> getUserInventory(@Path("userId") int userId);
+    Call<LinkedList<Obj>> getUserInventory(@Path("userId") int userId);
 }

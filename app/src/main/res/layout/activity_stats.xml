@@ -189,12 +189,14 @@
         android:id="@+id/myGamesButton"
         android:layout_width="260dp"
         android:layout_height="wrap_content"
+        android:background="@drawable/button_rounded_yellow"
         android:fontFamily="@font/press_start_2p"
         android:text="Check your scores"
+        android:textAlignment="center"
+        android:textColor="@android:color/black"
         app:layout_constraintBottom_toTopOf="@+id/relativeLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/userDefText"
-        android:background="@drawable/button_rounded_yellow"/>
+        app:layout_constraintTop_toBottomOf="@+id/userDefText" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

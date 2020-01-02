@@ -75,40 +75,7 @@ public class InventoryActivity extends AppCompatActivity {
                 return false;
             }
         });
-
-        getInventory();
-    }
-
-    public void getInventory(){
-        Call<List<Obj>> call = sharedData.useRetrofit().getUserInventory(sharedData.getUser().getID());
-        call.enqueue(new Callback<List<Obj>>() {
-
-            @Override
-            public void onResponse(Call<List<Obj>> call, Response<List<Obj>> response) {
-
-                if(!response.isSuccessful()){
-                    switch (response.code()) {
-                        case 404:
-                            errorInfoTxt.setText("Player ID not found.");
-                            break;
-                        default:
-                            errorInfoTxt.setText("Oops!" + "\n\n" + "Seem something goes wrong :S");
-                            break;
-                    }
-                    return;
-                } else {
-                    List<Obj> myInventory = response.body();
-                    //errorInfoTxt.setText(myInventory.get(0).getObjName());
-                    recyclerList.setAdapter(new DataAdapterInventory(myInventory));
-                }
-            }
-
-            @Override
-            public void onFailure(Call<List<Obj>> call, Throwable t) {
-                Log.d("JSON", t.toString());
-            }
-        });
-
+        recyclerList.setAdapter(new DataAdapterInventory(sharedData.getUserInventory())); //Adding the user inventory to adapter in order to generate the recycler view.
     }
 
 

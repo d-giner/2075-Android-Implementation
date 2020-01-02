@@ -3,7 +3,6 @@ package com.game.in2075.Retrofit.JsonClasses;
 import com.game.in2075.Retrofit.Json2075API;
 
 import java.util.LinkedList;
-import java.util.List;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -14,7 +13,8 @@ public class SharedData {
 
     private UserTO user;
     private Json2075API jsonAPI;
-    private LinkedList<Obj> userInventory = new LinkedList<Obj>();
+    private LinkedList<Obj> userInventory = null;
+    private Boolean  lightsaber, helmet, greatShield;
 
     public static SharedData getInstance(){
         if (instance == null){
@@ -35,13 +35,56 @@ public class SharedData {
         return this.user;
      }
 
-     public void setUserInventory(LinkedList<Obj> l){
-        this.userInventory.addAll(l);
+     public void setUserInventory(LinkedList<Obj> li){
+         userInventory = new LinkedList<>();
+        this.userInventory.addAll(li);
+
+        this.lightsaber = false;
+        this.greatShield = false;
+        this.helmet = false;
+
+        for (Obj object : li){
+            switch (object.getObjName()) {
+                case "Lightsaber":
+                    this.lightsaber = true;
+                    break;
+                case "Great Shield":
+                    this.greatShield = true;
+                    break;
+                case "Helmet":
+                    this.helmet = true;
+                    break;
+            }
+         }
      }
 
      public LinkedList<Obj> getUserInventory(){
         return this.userInventory;
      }
+
+    public Boolean getLightsaber() {
+        return lightsaber;
+    }
+
+    public void setLightsaber(Boolean lightsaber) {
+        this.lightsaber = lightsaber;
+    }
+
+    public Boolean getGreatShield() {
+        return greatShield;
+    }
+
+    public void setGreatShield(Boolean greatShield) {
+        this.greatShield = greatShield;
+    }
+
+    public Boolean getHelmet() {
+        return helmet;
+    }
+
+    public void setHelmet(Boolean helmet) {
+        this.helmet = helmet;
+    }
 
      public Json2075API useRetrofit(){
          Retrofit retrofit = new Retrofit.Builder()
