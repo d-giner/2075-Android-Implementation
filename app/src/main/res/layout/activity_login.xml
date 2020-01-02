@@ -30,7 +30,7 @@
         android:background="@drawable/button_rounded_cian"
         android:fontFamily="@font/press_start_2p"
         android:text="Login"
-        android:textSize="14sp"
+        android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/passText" />
@@ -46,6 +46,7 @@
         android:fontFamily="@font/press_start_2p"
         android:text="Register"
         android:textColor="#99FFFFFF"
+        android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/logButton" />
