@@ -29,6 +29,12 @@ public interface Json2075API {
     @POST("authent/updatePassword")
     Call<Void> updateUserPassword(@Body UserTO u); //Void type because the response that we will receive, do not have any "body or class instance".
 
+    @POST("shop/purchase")
+    Call<Void> setPurchase(@Body LinkedList<Obj> li);
+
+    @POST("authent/updatemoney")
+    Call<Void> updateUserMoney(@Body UserTO u);
+
     @DELETE("authent/del/{username}/")
     Call<Void> setUserDel(@Path("username") String username);
 

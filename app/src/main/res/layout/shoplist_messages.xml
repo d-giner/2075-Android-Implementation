@@ -40,7 +40,7 @@
             android:src="@drawable/pigy_shop"/>
 
         <TextView
-            android:id="@+id/warningtTxt"
+            android:id="@+id/warningtTxt1"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:textColor="@color/SpacialOrange"
@@ -48,10 +48,22 @@
             android:gravity="center"
             android:fontFamily="@font/press_start_2p"
             android:layout_marginTop="16dp"
-            android:layout_marginBottom="16dp"
             android:text="Shopping cart:"
             android:textStyle="bold"
             android:textSize="11sp"/>
+
+        <TextView
+            android:id="@+id/warningtTxt2"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="16dp"
+            android:fontFamily="@font/press_start_2p"
+            android:gravity="center"
+            android:textColor="@android:color/black"
+            android:textSize="11sp"
+            android:textStyle="bold" />
     </LinearLayout>
 
     </LinearLayout>

@@ -9,26 +9,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/button_rounded_solidwhite"
-        android:orientation="vertical">
-
-
-        <TextView
-            android:id="@+id/closeTxt"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_gravity="end"
-            android:layout_marginTop="5dp"
-            android:layout_marginEnd="5dp"
-            android:background="@drawable/cerclebackground_black"
-            android:gravity="center"
-            android:text="X"
-            android:textColor="@android:color/black"
-            android:textStyle="bold" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:background="@drawable/button_rounded_border_solidwhite"
         android:orientation="vertical">
 
         <ImageView
@@ -37,7 +18,7 @@
             android:layout_height="87dp"
             android:layout_gravity="center"
             android:foregroundGravity="center"
-            android:src="@drawable/bot"/>
+            android:src="@drawable/coins"/>
 
         <TextView
             android:id="@+id/warningtTxt1"
@@ -48,9 +29,9 @@
             android:layout_gravity="center"
             android:gravity="center"
             android:layout_marginTop="16dp"
-            android:text="Stat improvements"
+            android:text="Do you want to purchase?"
             android:textStyle="bold"
-            android:textSize="11sp"/>
+            android:textSize="13sp"/>
 
         <TextView
             android:id="@+id/warningtTxt2"
@@ -65,21 +46,35 @@
             android:textSize="11sp"
             android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/warningtTxt3"
-            android:fontFamily="@font/press_start_2p"
-            android:layout_width="250dp"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/SpacialOrange"
+            android:orientation="horizontal"
             android:layout_gravity="center"
             android:gravity="center"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="16dp"
-            android:text="Stat improvements"
-            android:textStyle="bold"
-            android:textSize="11sp"/>
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp">
 
-    </LinearLayout>
+            <Button
+                android:id="@+id/yesButton"
+                android:text="Yes"
+                android:fontFamily="@font/press_start_2p"
+                android:textSize="12sp"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/button_rounded_cian"/>
+
+            <Button
+                android:id="@+id/noButton"
+                android:text="No"
+                android:fontFamily="@font/press_start_2p"
+                android:textSize="12sp"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:background="@drawable/button_rounded_red"/>
+        </LinearLayout>
 
     </LinearLayout>
 

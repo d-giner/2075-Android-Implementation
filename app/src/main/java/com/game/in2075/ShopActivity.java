@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -19,6 +20,10 @@ import com.game.in2075.Retrofit.JsonClasses.SharedData;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.LinkedList;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class ShopActivity extends AppCompatActivity {
 
@@ -36,7 +41,7 @@ public class ShopActivity extends AppCompatActivity {
     private Boolean obj1, obj2, obj3, obj4, obj5;
     private int userWallet = sharedData.getUser().getMoney();
     private int totalPurchasePrice = 0;
-    private Dialog listDialog, confDialog, inspDialog;
+    private Dialog listDialog, confDialog, inspDialog, myDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,6 +87,9 @@ public class ShopActivity extends AppCompatActivity {
 
         listDialog = new Dialog(this);
         confDialog = new Dialog(this);
+        myDialog = new Dialog(this);
+        confDialog.setCancelable(false);
+        confDialog.setCanceledOnTouchOutside(false);
         inspDialog =  new Dialog(this);
 
         //Variables to show the parameters of the items
@@ -154,69 +162,75 @@ public class ShopActivity extends AppCompatActivity {
         ins1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                TextView closeWarning, warningMsg;
-                listDialog.setContentView(R.layout.inspect_item_messages);
-                closeWarning = listDialog.findViewById(R.id.closeTxt);
-                warningMsg = listDialog.findViewById(R.id.warningtTxt);
-                warningMsg.setText("The Lightsaber increases" + "\n\n");
+                TextView closeWarning, warningMsg1, warningMsg2, warningMsg3;
+                inspDialog.setContentView(R.layout.inspect_item_messages);
+                closeWarning = inspDialog.findViewById(R.id.closeTxt);
+                warningMsg1 = inspDialog.findViewById(R.id.warningtTxt1);
+                warningMsg2 = inspDialog.findViewById(R.id.warningtTxt2);
+                warningMsg3 = inspDialog.findViewById(R.id.warningtTxt3);
+                warningMsg1.setText("The Lightsaber increases");
                 int a = sharedData.getShopItems().get(0).getObjAttack() + sharedData.getUser().getAttack();
-                warningMsg.append("your attack from: " + sharedData.getUser().getAttack() + " to: " + a + "\n");
-                warningMsg.append("\n" + "I would recommend that you always carry one with you!");
+                warningMsg2.setText("your attack from: " + sharedData.getUser().getAttack() + " to: " + a);
+                warningMsg3.setText("I would recommend that you always carry one with you!");
 
                 closeWarning.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        listDialog.dismiss();
+                        inspDialog.dismiss();
                     }
                 });
-                listDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
-                listDialog.show();
+                inspDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+                inspDialog.show();
             }
         });
 
         ins2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                TextView closeWarning, warningMsg;
-                listDialog.setContentView(R.layout.inspect_item_messages);
-                closeWarning = listDialog.findViewById(R.id.closeTxt);
-                warningMsg = listDialog.findViewById(R.id.warningtTxt);
-                warningMsg.setText("The Great Shield increases" + "\n\n");
+                TextView closeWarning, warningMsg1, warningMsg2, warningMsg3;
+                inspDialog.setContentView(R.layout.inspect_item_messages);
+                closeWarning = inspDialog.findViewById(R.id.closeTxt);
+                warningMsg1 = inspDialog.findViewById(R.id.warningtTxt1);
+                warningMsg2 = inspDialog.findViewById(R.id.warningtTxt2);
+                warningMsg3 = inspDialog.findViewById(R.id.warningtTxt3);
+                warningMsg1.setText("The Great Shield increases");
                 int a = sharedData.getShopItems().get(1).getObjDefense() + sharedData.getUser().getDefense();
-                warningMsg.append("your defense from: " + sharedData.getUser().getDefense() + " to: " + a + "\n");
-                warningMsg.append("\n" + "Could you survive without one?");
+                warningMsg2.setText("your defense from: " + sharedData.getUser().getDefense() + " to: " + a);
+                warningMsg3.setText("Could you survive without one?");
 
                 closeWarning.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        listDialog.dismiss();
+                        inspDialog.dismiss();
                     }
                 });
-                listDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
-                listDialog.show();
+                inspDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+                inspDialog.show();
             }
         });
 
         ins3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                TextView closeWarning, warningMsg;
-                listDialog.setContentView(R.layout.inspect_item_messages);
-                closeWarning = listDialog.findViewById(R.id.closeTxt);
-                warningMsg = listDialog.findViewById(R.id.warningtTxt);
-                warningMsg.setText("The Helmet increases" + "\n\n");
+                TextView closeWarning, warningMsg1, warningMsg2, warningMsg3;
+                inspDialog.setContentView(R.layout.inspect_item_messages);
+                closeWarning = inspDialog.findViewById(R.id.closeTxt);
+                warningMsg1 = inspDialog.findViewById(R.id.warningtTxt1);
+                warningMsg2 = inspDialog.findViewById(R.id.warningtTxt2);
+                warningMsg3 = inspDialog.findViewById(R.id.warningtTxt3);
+                warningMsg1.setText("The Helmet increases");
                 int a = sharedData.getShopItems().get(2).getObjDefense() + sharedData.getUser().getDefense();
-                warningMsg.append("your defense from: " + sharedData.getUser().getDefense() + " to: " + a + "\n");
-                warningMsg.append("\n" + "Protect your ideas!");
+                warningMsg2.setText("your defense from: " + sharedData.getUser().getDefense() + " to: " + a);
+                warningMsg3.setText("Protect your ideas!");
 
                 closeWarning.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        listDialog.dismiss();
+                        inspDialog.dismiss();
                     }
                 });
-                listDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
-                listDialog.show();
+                inspDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+                inspDialog.show();
             }
         });
 
@@ -343,13 +357,13 @@ public class ShopActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (shoppingList.size()>0) {
-                    TextView closeWarning, warningMsg;
+                    TextView closeWarning, warningMsg2;
                     listDialog.setContentView(R.layout.shoplist_messages);
                     closeWarning = listDialog.findViewById(R.id.closeTxt);
-                    warningMsg = listDialog.findViewById(R.id.warningtTxt);
-                    warningMsg.setText("Shopping cart:" + "\n");
+                    warningMsg2 = listDialog.findViewById(R.id.warningtTxt2);
+                    //warningMsg1.setText("Shopping cart:" + "\n");
                     for (Obj o : shoppingList){
-                        warningMsg.append("-" + o.getObjName() + "\n");
+                        warningMsg2.append("-" + o.getObjName() + "\n\n");
                     }
 
                     closeWarning.setOnClickListener(new View.OnClickListener() {
@@ -368,6 +382,50 @@ public class ShopActivity extends AppCompatActivity {
         confirmPurchaseBttn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (shoppingList.size()>0) {
+                    TextView warningMsg2;
+                    Button yesBttn, noBttn;
+                    confDialog.setContentView(R.layout.confirm_purchase_messages);
+                    warningMsg2 = confDialog.findViewById(R.id.warningtTxt2);
+                    yesBttn = confDialog.findViewById(R.id.yesButton);
+                    noBttn = confDialog.findViewById(R.id.noButton);
+                    final int m = userWallet - totalPurchasePrice;
+                    warningMsg2.setText("Your balance after the purchase: " + String.valueOf(m));
+
+                    yesBttn.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            sharedData.getUser().setMoney(m);
+                            setPurchase();
+                            updateUserMoney();
+                            getInventory();
+                            shoppingList.clear();
+                            totalPurchasePrice = 0;
+                            totalPriceTxt.setText("Total: " + String.valueOf(totalPurchasePrice));
+                            userMoneyTxt.setText(String.valueOf(m));
+                            shoppingCounterTxt.setText(String.valueOf(shoppingList.size()));
+                            shoppingCounterTxt.setVisibility(View.GONE);
+                            obj1 = false;
+                            obj2 = false;
+                            obj3 = false;
+                            obj4 = false;
+                            obj5 = false;
+                            Toast.makeText(getApplicationContext(), "The purchase has been completed.", Toast.LENGTH_SHORT).show();
+                            confDialog.dismiss();
+                        }
+                    });
+
+                    noBttn.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            confDialog.dismiss();
+                        }
+                    });
+                    confDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+                    confDialog.show();
+
+
+                }
 
             }
         });
@@ -392,6 +450,117 @@ public class ShopActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    //Update the user inventory in backend
+    public void setPurchase(){
+        Call<Void> call = sharedData.useRetrofit().setPurchase(shoppingList);
+
+        call.enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+
+                if(!response.isSuccessful()) {
+                    switch (response.code()) {
+                        case 400:
+                            showWarning("Oops!" + "\n\n" + "Seem something goes wrong :S");
+                            break;
+                        default:
+                            break;
+                    }
+                    return;
+                }
+                else if (response.code() == 200){
+                    Log.d("Code:" ,String.valueOf(response.code()));
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                Log.d("JSON", t.toString());
+            }
+        });
+
+    }
+
+    //Update the user data in backend
+    public void updateUserMoney(){
+        Call<Void> call = sharedData.useRetrofit().updateUserMoney(sharedData.getUser());
+
+        call.enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+
+                if(!response.isSuccessful()) {
+                    switch (response.code()) {
+                        case 400:
+                            showWarning("Oops!" + "\n\n" + "Seem something goes wrong :S");
+                            break;
+                        default:
+                            break;
+                    }
+                    return;
+                }
+                else if (response.code() == 200){
+                    Log.d("Code:" ,String.valueOf(response.code()));
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                Log.d("JSON", t.toString());
+            }
+        });
+    }
+
+    //Requesting the user inventory to backend
+    public void getInventory(){
+        Call<LinkedList<Obj>> call = sharedData.useRetrofit().getUserInventory(sharedData.getUser().getID());
+        call.enqueue(new Callback<LinkedList<Obj>>() {
+
+            @Override
+            public void onResponse(Call<LinkedList<Obj>> call, Response<LinkedList<Obj>> response) {
+
+                if(!response.isSuccessful()){
+                    switch (response.code()) {
+                        case 404:
+                            showWarning("Player ID not found.");
+                            break;
+                        default:
+                            showWarning("Oops!" + "\n\n" + "Seem something goes wrong :S");
+                            break;
+                    }
+                    return;
+                } else if (response.code() == 201) {
+                    LinkedList<Obj> myInventory = response.body();
+                    sharedData.setUserInventory(myInventory); //Saving the user inventory in sharedData singletone class
+                }
+            }
+
+            @Override
+            public void onFailure(Call<LinkedList<Obj>> call, Throwable t) {
+                Log.d("JSON", t.toString());
+            }
+        });
+    }
+
+    //Callable Layout for warnings. Now is used for background_main_menu
+    public void showWarning(String s){
+        TextView closeWarning, warningMsg;
+        myDialog.setContentView(R.layout.popup_messages);
+        closeWarning = myDialog.findViewById(R.id.closeTxt);
+        warningMsg = myDialog.findViewById(R.id.warningtTxt1);
+        warningMsg.setText(s);
+
+        closeWarning.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                myDialog.dismiss();
+
+            }
+        });
+        myDialog.show();
+        myDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
     }
 
     @Override

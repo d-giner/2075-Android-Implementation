@@ -1,8 +1,6 @@
 package com.game.in2075;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Dialog;
 import android.os.Bundle;
@@ -18,7 +16,6 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-import com.game.in2075.Retrofit.JsonClasses.DataAdapterInventory;
 import com.game.in2075.Retrofit.JsonClasses.FormReg;
 import com.game.in2075.Retrofit.JsonClasses.Obj;
 import com.game.in2075.Retrofit.JsonClasses.SharedData;
@@ -27,7 +24,6 @@ import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 
 import java.util.LinkedList;
-import java.util.List;
 
 
 public class LoginActivity extends AppCompatActivity {
@@ -185,7 +181,7 @@ public class LoginActivity extends AppCompatActivity {
         TextView closeWarning, warningMsg;
         myDialog.setContentView(R.layout.popup_messages);
         closeWarning = myDialog.findViewById(R.id.closeTxt);
-        warningMsg = myDialog.findViewById(R.id.warningtTxt);
+        warningMsg = myDialog.findViewById(R.id.warningtTxt1);
         warningMsg.setText(s);
 
         closeWarning.setOnClickListener(new View.OnClickListener() {

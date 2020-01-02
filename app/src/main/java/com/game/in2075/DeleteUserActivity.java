@@ -106,7 +106,7 @@ public class DeleteUserActivity extends AppCompatActivity {
         ImageView warningImg;
         popDialog.setContentView(R.layout.popup_messages);
         closeWarning = popDialog.findViewById(R.id.closeTxt);
-        warningMsg = popDialog.findViewById(R.id.warningtTxt);
+        warningMsg = popDialog.findViewById(R.id.warningtTxt1);
         warningImg = popDialog.findViewById(R.id.warningImage);
 
         if (userVerified) {

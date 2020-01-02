@@ -112,7 +112,7 @@ public class RegisterActivity extends AppCompatActivity {
         TextView closeWarning, warningMsg;
         msgDialog.setContentView(R.layout.popup_messages);
         closeWarning = (TextView) msgDialog.findViewById(R.id.closeTxt);
-        warningMsg = (TextView) msgDialog.findViewById(R.id.warningtTxt);
+        warningMsg = (TextView) msgDialog.findViewById(R.id.warningtTxt1);
 
         if (userVerified)
             warningMsg.setText("Welcome: " + u.getUsername() + "!" + "\n\n" + "The universe was waiting for you!");

@@ -9,9 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.game.in2075.Retrofit.JsonClasses.FormReg;
 import com.game.in2075.Retrofit.JsonClasses.SharedData;
-import com.game.in2075.Retrofit.JsonClasses.UserTO;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -98,12 +96,12 @@ public class UpdatePasswordActivity extends AppCompatActivity {
         });
     }
 
-    //Callable Layout for warnings. Now is used for background_main_menu
+    //Callable Layout for warnings
     public void showWarning(String s){
         TextView closeWarning, warningMsg;
         msgDialog.setContentView(R.layout.popup_messages);
         closeWarning = msgDialog.findViewById(R.id.closeTxt);
-        warningMsg = msgDialog.findViewById(R.id.warningtTxt);
+        warningMsg = msgDialog.findViewById(R.id.warningtTxt1);
         oldPassTxt.setText("");
         newPassTxt.setText("");
 
