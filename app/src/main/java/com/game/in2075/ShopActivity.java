@@ -249,7 +249,7 @@ public class ShopActivity extends AppCompatActivity {
                 if (sharedData.getLightsaber())
                     Toast.makeText(getApplicationContext(),"You already have a Lightsaber in your inventory.",Toast.LENGTH_SHORT).show();
 
-                else if (!obj1 && userWallet - totalPurchasePrice > sharedData.getShopItems().get(0).getPrice()){
+                else if (!obj1 && userWallet - totalPurchasePrice >= sharedData.getShopItems().get(0).getPrice()){
                     Toast.makeText(getApplicationContext(),"Lightsaber added to shopping list.",Toast.LENGTH_SHORT).show();
                     shoppingList.add(sharedData.getShopItems().get(0));
                     totalPurchasePrice+=sharedData.getShopItems().get(0).getPrice();
@@ -271,7 +271,7 @@ public class ShopActivity extends AppCompatActivity {
                 if (sharedData.getGreatShield())
                     Toast.makeText(getApplicationContext(),"You already have a Great Shield in your inventory.",Toast.LENGTH_SHORT).show();
 
-                else if (!obj2 && userWallet - totalPurchasePrice > sharedData.getShopItems().get(1).getPrice()){
+                else if (!obj2 && userWallet - totalPurchasePrice >= sharedData.getShopItems().get(1).getPrice()){
                     Toast.makeText(getApplicationContext(),"Great Shield added to shopping list.",Toast.LENGTH_SHORT).show();
                     shoppingList.add(sharedData.getShopItems().get(1));
                     totalPurchasePrice+=sharedData.getShopItems().get(1).getPrice();
@@ -293,7 +293,7 @@ public class ShopActivity extends AppCompatActivity {
                 if (sharedData.getHelmet())
                     Toast.makeText(getApplicationContext(),"You already have a Helmet in your inventory.",Toast.LENGTH_SHORT).show();
 
-                else if (!obj3 && userWallet - totalPurchasePrice > sharedData.getShopItems().get(2).getPrice()){
+                else if (!obj3 && userWallet - totalPurchasePrice >= sharedData.getShopItems().get(2).getPrice()){
                     Toast.makeText(getApplicationContext(),"Helmet added to shopping list.",Toast.LENGTH_SHORT).show();
                     shoppingList.add(sharedData.getShopItems().get(2));
                     totalPurchasePrice+=sharedData.getShopItems().get(2).getPrice();
@@ -317,7 +317,7 @@ public class ShopActivity extends AppCompatActivity {
 //                if (sharedData.getXXXX())
 //                    Toast.makeText(getApplicationContext(),"You already have a XXXX in your inventory.",Toast.LENGTH_SHORT).show();
 //
-//                else if (!obj4 && userWallet - totalPurchasePrice > sharedData.getShopItems().get(3).getPrice()){
+//                else if (!obj4 && userWallet - totalPurchasePrice >= sharedData.getShopItems().get(3).getPrice()){
 //                    Toast.makeText(getApplicationContext(),"XXXX added to shopping list.",Toast.LENGTH_SHORT).show();
 //                    shoppingList.add(sharedData.getShopItems().get(3));
 //                    totalPurchasePrice+=sharedData.getShopItems().get(3).getPrice();
@@ -340,7 +340,7 @@ public class ShopActivity extends AppCompatActivity {
 //                if (sharedData.getXXXX())
 //                    Toast.makeText(getApplicationContext(),"You already have a XXXX in your inventory.",Toast.LENGTH_SHORT).show();
 //
-//                else if (!obj5 && userWallet - totalPurchasePrice > sharedData.getShopItems().get(4).getPrice()){
+//                else if (!obj5 && userWallet - totalPurchasePrice >= sharedData.getShopItems().get(4).getPrice()){
 //                    Toast.makeText(getApplicationContext(),"XXXX added to shopping list.",Toast.LENGTH_SHORT).show();
 //                    shoppingList.add(sharedData.getShopItems().get(4));
 //                    totalPurchasePrice+=sharedData.getShopItems().get(4).getPrice();
@@ -584,5 +584,4 @@ public class ShopActivity extends AppCompatActivity {
         overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
         finish();
     }
-
 }
