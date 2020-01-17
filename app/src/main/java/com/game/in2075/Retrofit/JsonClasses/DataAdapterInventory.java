@@ -15,6 +15,7 @@ import java.util.List;
 
 public class DataAdapterInventory extends RecyclerView.Adapter<DataAdapterInventory.ViewHolderData> {
     private List<Obj> objects; /** We create a Game list */
+    private  Boolean oxygenMustShow = false;
 
     public DataAdapterInventory(List<Obj> o) { /** Constructor */
         this.objects = o;
@@ -38,10 +39,26 @@ public class DataAdapterInventory extends RecyclerView.Adapter<DataAdapterInvent
                 break;
             case "Helmet":
                 holder.objImg.setImageResource(R.drawable.helmet);
+                break;
+            case "Oxygen Bottle":
+                holder.objImg.setImageResource(R.drawable.o2);
+                oxygenMustShow = true;
+                break;
+            case "Wingman":
+                holder.objImg.setImageResource(R.drawable.wingman);
+                break;
         }
-        holder.objectName.setText(objects.get(position).getObjName());
-        holder.attack.append(String.valueOf(objects.get(position).getObjAttack()));
-        holder.defense.append(String.valueOf(objects.get(position).getObjDefense()));
+        if (!oxygenMustShow) {
+            holder.objectName.setText(objects.get(position).getObjName());
+            holder.attack.append(String.valueOf(objects.get(position).getObjAttack()));
+            holder.defense.append(String.valueOf(objects.get(position).getObjDefense()));
+        }
+        else {
+            holder.objectName.setText(objects.get(position).getObjName());
+            holder.attack.setVisibility(View.GONE);
+            holder.defense.setVisibility(View.GONE);
+            oxygenMustShow = false;
+        }
     }
 
     @Override

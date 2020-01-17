@@ -130,8 +130,8 @@ public class ShopActivity extends AppCompatActivity {
         ins1.setImageResource(R.drawable.lightsaber);
         ins2.setImageResource(R.drawable.shield);
         ins3.setImageResource(R.drawable.helmet);
-        ins4.setImageResource(R.drawable.coins);
-        ins5.setImageResource(R.drawable.coins);
+        ins4.setImageResource(R.drawable.o2);
+        ins5.setImageResource(R.drawable.wingman);
         //Variables to add the items into shopping list
         pur1 = findViewById(R.id.purchase1);
         pur2 = findViewById(R.id.purchase2);
@@ -158,9 +158,17 @@ public class ShopActivity extends AppCompatActivity {
         atkTxt3.append(String.valueOf(sharedData.getShopItems().get(2).getObjAttack()));
         defTxt3.append(String.valueOf(sharedData.getShopItems().get(2).getObjDefense()));
         priceTxt3.append(String.valueOf(sharedData.getShopItems().get(2).getPrice()));
+        itemTxt4.setText(sharedData.getShopItems().get(3).getObjName());
+        atkTxt4.append(String.valueOf(sharedData.getShopItems().get(3).getObjAttack()));
+        defTxt4.append(String.valueOf(sharedData.getShopItems().get(3).getObjDefense()));
+        priceTxt4.append(String.valueOf(sharedData.getShopItems().get(3).getPrice()));
+        itemTxt5.setText(sharedData.getShopItems().get(4).getObjName());
+        atkTxt5.append(String.valueOf(sharedData.getShopItems().get(4).getObjAttack()));
+        defTxt5.append(String.valueOf(sharedData.getShopItems().get(4).getObjDefense()));
+        priceTxt5.append(String.valueOf(sharedData.getShopItems().get(4).getPrice()));
         shoppingCounterTxt.setVisibility(View.GONE);
 
-        //We set the behavioural of the images On Click
+        //We explain the behavioural of the shop items/images On Click
         ins1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -239,7 +247,49 @@ public class ShopActivity extends AppCompatActivity {
         ins4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                TextView closeWarning, warningMsg1, warningMsg2, warningMsg3;
+                inspDialog.setContentView(R.layout.inspect_item_messages);
+                closeWarning = inspDialog.findViewById(R.id.closeTxt);
+                warningMsg1 = inspDialog.findViewById(R.id.warningtTxt1);
+                warningMsg2 = inspDialog.findViewById(R.id.warningtTxt2);
+                warningMsg3 = inspDialog.findViewById(R.id.warningtTxt3);
+                warningMsg1.setText("The Oxygen Bottle increases");
+                warningMsg2.setText("your oxygen level from by 50 points.");
+                warningMsg3.setText("Somebody told me that humans needs it in order to survive.");
 
+                closeWarning.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        inspDialog.dismiss();
+                    }
+                });
+                inspDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+                inspDialog.show();
+            }
+        });
+
+        ins5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TextView closeWarning, warningMsg1, warningMsg2, warningMsg3;
+                inspDialog.setContentView(R.layout.inspect_item_messages);
+                closeWarning = inspDialog.findViewById(R.id.closeTxt);
+                warningMsg1 = inspDialog.findViewById(R.id.warningtTxt1);
+                warningMsg2 = inspDialog.findViewById(R.id.warningtTxt2);
+                warningMsg3 = inspDialog.findViewById(R.id.warningtTxt3);
+                warningMsg1.setText("The Wingman... It would increase");
+                int a = sharedData.getShopItems().get(4).getObjAttack() + sharedData.getUser().getAttack();
+                warningMsg2.setText("your attack from: " + sharedData.getUser().getAttack() + " to: " + a);
+                warningMsg3.setText("Seems that you have good taste... I found it out there and accidentally I killed all my family.");
+
+                closeWarning.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        inspDialog.dismiss();
+                    }
+                });
+                inspDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+                inspDialog.show();
             }
         });
 
@@ -259,7 +309,7 @@ public class ShopActivity extends AppCompatActivity {
                     obj1 = true;
                 }
                 else if (obj1)
-                    Toast.makeText(getApplicationContext(),"You already have a Lightsaber in your shopping list.",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(),"You already have a Lightsaber in your shopping cart.",Toast.LENGTH_SHORT).show();
                 else
                     Toast.makeText(getApplicationContext(),"You do not have enough money." + "\n\n" + "Play to gain it!",Toast.LENGTH_SHORT).show();
             }
@@ -281,7 +331,7 @@ public class ShopActivity extends AppCompatActivity {
                     obj2 = true;
                 }
                 else if (obj2)
-                    Toast.makeText(getApplicationContext(),"You already have a Great Shield in your shopping list.",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(),"You already have a Great Shield in your shopping cart.",Toast.LENGTH_SHORT).show();
                 else
                     Toast.makeText(getApplicationContext(),"You do not have enough money." + "\n\n" + "Play to gain it!",Toast.LENGTH_SHORT).show();
             }
@@ -303,7 +353,7 @@ public class ShopActivity extends AppCompatActivity {
                     obj3 = true;
                 }
                 else if (obj3)
-                    Toast.makeText(getApplicationContext(),"You already have a Helmet in your shopping list.",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(),"You already have a Helmet in your shopping cart.",Toast.LENGTH_SHORT).show();
                 else
                     Toast.makeText(getApplicationContext(),"You do not have enough money." + "\n\n" + "Play to gain it!",Toast.LENGTH_SHORT).show();
 
@@ -313,46 +363,44 @@ public class ShopActivity extends AppCompatActivity {
         pur4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(),"New items will be available soon!",Toast.LENGTH_SHORT).show();
-//                if (sharedData.getXXXX())
-//                    Toast.makeText(getApplicationContext(),"You already have a XXXX in your inventory.",Toast.LENGTH_SHORT).show();
-//
-//                else if (!obj4 && userWallet - totalPurchasePrice >= sharedData.getShopItems().get(3).getPrice()){
-//                    Toast.makeText(getApplicationContext(),"XXXX added to shopping list.",Toast.LENGTH_SHORT).show();
-//                    shoppingList.add(sharedData.getShopItems().get(3));
-//                    totalPurchasePrice+=sharedData.getShopItems().get(3).getPrice();
-                //        shoppingCounterTxt.setText(String.valueOf(shoppingList.size()));
-                //totalPriceTxt.setText("Total: " + String.valueOf(totalPurchasePrice));
-                //shoppingCounterTxt.setVisibility(View.VISIBLE);
-//                    obj4 = true;
-//                }
-//                else if (obj4)
-//                    Toast.makeText(getApplicationContext(),"You already have a XXXX in your shopping list.",Toast.LENGTH_SHORT).show();
-//                else
-//                    Toast.makeText(getApplicationContext(),"You do not have enought money." + "\n\n" + "Play to gain it!",Toast.LENGTH_SHORT).show();
+                if (sharedData.getO2())
+                    Toast.makeText(getApplicationContext(),"You already have an oxygen bottle in your inventory.",Toast.LENGTH_SHORT).show();
+
+                else if (!obj4 && userWallet - totalPurchasePrice >= sharedData.getShopItems().get(3).getPrice()){
+                    Toast.makeText(getApplicationContext(),"Oxygen bottle added to shopping list.",Toast.LENGTH_SHORT).show();
+                    shoppingList.add(sharedData.getShopItems().get(3));
+                    totalPurchasePrice+=sharedData.getShopItems().get(3).getPrice();
+                        shoppingCounterTxt.setText(String.valueOf(shoppingList.size()));
+                totalPriceTxt.setText("Total: " + String.valueOf(totalPurchasePrice));
+                shoppingCounterTxt.setVisibility(View.VISIBLE);
+                    obj4 = true;
+                }
+                else if (obj4)
+                    Toast.makeText(getApplicationContext(),"You already have an Oxygen Bottle in your shopping cart.",Toast.LENGTH_SHORT).show();
+                else
+                    Toast.makeText(getApplicationContext(),"You do not have enought money." + "\n\n" + "Play to gain it!",Toast.LENGTH_SHORT).show();
             }
         });
 
         pur5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(),"New items will be available soon!",Toast.LENGTH_SHORT).show();
-//                if (sharedData.getXXXX())
-//                    Toast.makeText(getApplicationContext(),"You already have a XXXX in your inventory.",Toast.LENGTH_SHORT).show();
-//
-//                else if (!obj5 && userWallet - totalPurchasePrice >= sharedData.getShopItems().get(4).getPrice()){
-//                    Toast.makeText(getApplicationContext(),"XXXX added to shopping list.",Toast.LENGTH_SHORT).show();
-//                    shoppingList.add(sharedData.getShopItems().get(4));
-//                    totalPurchasePrice+=sharedData.getShopItems().get(4).getPrice();
-                //        shoppingCounterTxt.setText(String.valueOf(shoppingList.size()));
-                //totalPriceTxt.setText("Total: " + String.valueOf(totalPurchasePrice));
-                //shoppingCounterTxt.setVisibility(View.VISIBLE);
-//                    obj5 = true;
-//                }
-//                else if (obj5)
-//                    Toast.makeText(getApplicationContext(),"You already have a XXXX in your shopping list.",Toast.LENGTH_SHORT).show();
-//                else
-//                    Toast.makeText(getApplicationContext(),"You do not have enought money." + "\n\n" + "Play to gain it!",Toast.LENGTH_SHORT).show();
+                if (sharedData.getWingman())
+                    Toast.makeText(getApplicationContext(),"You already have a Wingman in your inventory.",Toast.LENGTH_SHORT).show();
+
+                else if (!obj5 && userWallet - totalPurchasePrice >= sharedData.getShopItems().get(4).getPrice()){
+                    Toast.makeText(getApplicationContext(),"WOW! Wingman added to shopping list.",Toast.LENGTH_SHORT).show();
+                    shoppingList.add(sharedData.getShopItems().get(4));
+                    totalPurchasePrice+=sharedData.getShopItems().get(4).getPrice();
+                        shoppingCounterTxt.setText(String.valueOf(shoppingList.size()));
+                totalPriceTxt.setText("Total: " + String.valueOf(totalPurchasePrice));
+                shoppingCounterTxt.setVisibility(View.VISIBLE);
+                    obj5 = true;
+                }
+                else if (obj5)
+                    Toast.makeText(getApplicationContext(),"You already have a Wingman in your shopping list.",Toast.LENGTH_SHORT).show();
+                else
+                    Toast.makeText(getApplicationContext(),"You do not have enought money." + "\n\n" + "Play to gain it!",Toast.LENGTH_SHORT).show();
             }
         });
 

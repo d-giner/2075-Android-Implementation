@@ -15,7 +15,7 @@ public class SharedData {
     private Json2075API jsonAPI;
     private LinkedList<Obj> userInventory = null;
     private LinkedList<Obj> shopItems = null;
-    private Boolean  lightsaber, helmet, greatShield;
+    private Boolean  lightsaber, helmet, greatShield, o2, wingman;
 
     public static SharedData getInstance(){
         if (instance == null){
@@ -40,6 +40,8 @@ public class SharedData {
          this.lightsaber = false;
          this.greatShield = false;
          this.helmet = false;
+         this.o2 = false;
+         this.wingman = false;
      }
 
      public void setUserInventory(LinkedList<Obj> li){
@@ -49,6 +51,8 @@ public class SharedData {
         this.lightsaber = false;
         this.greatShield = false;
         this.helmet = false;
+         this.o2 = false;
+         this.wingman = false;
 
         for (Obj object : li){
             switch (object.getObjName()) {
@@ -60,6 +64,12 @@ public class SharedData {
                     break;
                 case "Helmet":
                     this.helmet = true;
+                    break;
+                case "Oxygen Bottle":
+                    this.o2 = true;
+                    break;
+                case "Wingman":
+                    this.wingman = true;
                     break;
             }
          }
@@ -100,6 +110,22 @@ public class SharedData {
 
     public void setHelmet(Boolean helmet) {
         this.helmet = helmet;
+    }
+
+    public Boolean getO2() {
+        return o2;
+    }
+
+    public void setO2(Boolean o) {
+        this.o2 = o;
+    }
+
+    public Boolean getWingman() {
+        return wingman;
+    }
+
+    public void setWingman(Boolean w) {
+        this.wingman = w;
     }
 
      public Json2075API useRetrofit(){

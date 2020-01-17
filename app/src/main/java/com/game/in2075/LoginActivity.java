@@ -39,7 +39,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        getSupportActionBar().hide();
+        getSupportActionBar().hide(); //Hide the action bar.
 
         myDialog = new Dialog(this);
 
@@ -146,7 +146,6 @@ public class LoginActivity extends AppCompatActivity {
                     switch (response.code()) {
                         case 404:
                             sharedData.initializeItemBools(); //This player do not has items, so we need to initialize some things
-
                             break;
                         default:
                             errorInfoTxt.setText("Oops!" + "\n\n" + "Seem something goes wrong :S");
@@ -171,8 +170,8 @@ public class LoginActivity extends AppCompatActivity {
         itemsList.add(new Obj(String.valueOf(sharedData.getUser().getID()), "Lightsaber", 120, 0, 100, 100));
         itemsList.add(new Obj(String.valueOf(sharedData.getUser().getID()), "Great Shield", 0, 50, 50, 100));
         itemsList.add(new Obj(String.valueOf(sharedData.getUser().getID()), "Helmet", 0, 10, 10, 100));
-        //itemsList.add(new Obj(String.valueOf(sharedData.getUser().getID()), "Lightsaber", 120, 0, 0, 100));
-        //itemsList.add(new Obj(String.valueOf(sharedData.getUser().getID()), "Lightsaber", 120, 0, 0, 100));
+        itemsList.add(new Obj(String.valueOf(sharedData.getUser().getID()), "Oxygen Bottle", 0, 0, 5, 100));
+        itemsList.add(new Obj(String.valueOf(sharedData.getUser().getID()), "Wingman", 350, 0, 4999, 1000));
         sharedData.setShopItems(itemsList);
     }
 
