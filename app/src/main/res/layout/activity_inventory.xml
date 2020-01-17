@@ -7,40 +7,42 @@
     tools:context=".InventoryActivity"
     android:background="@drawable/background_inventory">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/myRecycler"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="605dp"
+        android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <TextView
-        android:id="@+id/empty_view"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:visibility="gone"
-        android:text="no_data_available" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/myRecycler"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </LinearLayout>
 
     <TextView
         android:id="@+id/errorInfoText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="32dp"
         android:layout_marginEnd="16dp"
         android:textAlignment="center"
         android:textColor="@android:color/holo_red_dark"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/myRecycler" />
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
     <RelativeLayout
+        android:id="@+id/relativeLayout3"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -48,14 +50,13 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottomNavView_Bar"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/bottomNavView_Bar"
             android:background="#7790CAF9"
-            app:menu="@menu/bottom_nav_items_menu"
             app:itemIconTint="@color/colors_bottom_nav_items_menu"
-            app:itemTextColor="#000000">
-        </com.google.android.material.bottomnavigation.BottomNavigationView>
+            app:itemTextColor="#000000"
+            app:menu="@menu/bottom_nav_items_menu"></com.google.android.material.bottomnavigation.BottomNavigationView>
     </RelativeLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

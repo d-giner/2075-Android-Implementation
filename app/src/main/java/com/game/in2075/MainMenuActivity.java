@@ -18,7 +18,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainMenuActivity extends AppCompatActivity {
 
-    private float x1, x2;
+    private SharedData sharedData = SharedData.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,6 +81,7 @@ public class MainMenuActivity extends AppCompatActivity {
                 intent2.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 intent2.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent2);
+                //sharedData.getUserInventory().clear();
         }
         return super.onOptionsItemSelected(item);
     }
