@@ -3,11 +3,15 @@ package com.game.in2075;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Dialog;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.content.Intent;
 import android.widget.Toast;
@@ -33,6 +37,10 @@ public class LoginActivity extends AppCompatActivity {
     private Button logButt, regButt;
     private Dialog myDialog;
     private SharedData sharedData = SharedData.getInstance();
+    private SharedPreferences sharedPref;
+    private SharedPreferences.Editor editor;
+    private ProgressBar progressB;
+    private LinearLayout progressL;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +48,9 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         getSupportActionBar().hide(); //Hide the action bar.
+
+        sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        editor = sharedPref.edit();
 
         myDialog = new Dialog(this);
 
@@ -49,6 +60,8 @@ public class LoginActivity extends AppCompatActivity {
         passTxt = findViewById(R.id.passText);
         creator = findViewById(R.id.imageLogoView);
         errorInfoTxt = findViewById(R.id.errorInfoText);
+        progressB = findViewById(R.id.progressBar);
+        progressL = findViewById(R.id.progressLayout);
 
         creator.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,18 +76,25 @@ public class LoginActivity extends AppCompatActivity {
 
     //Actions of login buttons
     private void loginUser(){
-        logButt.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String a = userTxt.getText().toString();
-                String b = passTxt.getText().toString();
-
-                if (a.equals("") || b.equals(""))
-                    showWarning("Hey!" + "\n\n" + "Don't leave any field in blank!");
-                else
-                    logUser();
-            }
-        });
+        if (sharedPref.contains("user")){
+            String u = sharedPref.getString("user",null);
+            String p = sharedPref.getString("password",null);
+            logUser(u,p);
+        }
+        else {
+            progressL.setVisibility(View.GONE);
+            logButt.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    String u = userTxt.getText().toString();
+                    String p = passTxt.getText().toString();
+                    if (u.equals("") || p.equals(""))
+                        showWarning("Hey!" + "\n\n" + "Don't leave any field in blank!");
+                    else
+                        logUser(u, p);
+                }
+            });
+        }
     }
 
     //Acces to the register new user activity
@@ -91,15 +111,17 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     //Log and Reg Callable Methods
-    public void logUser(){
-        final FormReg logUserData = new FormReg(userTxt.getText().toString(),passTxt.getText().toString());
+    public void logUser(String u, String p){
+        final String userL = u;
+        final String passL = p;
+        final FormReg logUserData = new FormReg(userL, passL);
         Call<JsonElement> call = sharedData.useRetrofit().setUserLog(logUserData);
 
         call.enqueue(new Callback<JsonElement>() {
             @Override
             public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
                 JsonElement questions = response.body();
-
+                editor.clear().commit();
                 if(!response.isSuccessful()){
                     switch (response.code()) {
                         case 403:
@@ -111,6 +133,9 @@ public class LoginActivity extends AppCompatActivity {
                     }
                     return;
                 } else if (response.code() == 200){
+                    if (!sharedPref.contains("user")) {
+                        saveLoginSharedPreferences(userL, passL);
+                    }
                     UserTO userResponse = new Gson().fromJson(questions.getAsJsonObject(), UserTO.class); //Obtain the JsonObject and transform to type UserTO
                     goIn(userResponse);
                 }
@@ -143,6 +168,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onResponse(Call<LinkedList<Obj>> call, Response<LinkedList<Obj>> response) {
 
                 if(!response.isSuccessful()){
+                    editor.clear().commit();
                     switch (response.code()) {
                         case 404:
                             sharedData.initializeItemBools(); //This player do not has items, so we need to initialize some things
@@ -175,7 +201,6 @@ public class LoginActivity extends AppCompatActivity {
         sharedData.setShopItems(itemsList);
     }
 
-
     //Callable Layout for warnings.
     public void showWarning(String s){
         TextView closeWarning, warningMsg;
@@ -192,5 +217,11 @@ public class LoginActivity extends AppCompatActivity {
         });
         myDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
         myDialog.show();
+    }
+
+    public void saveLoginSharedPreferences(String user, String pass){
+        editor.putString("user",user);
+        editor.putString("password",pass);
+        editor.commit();
     }
 }
