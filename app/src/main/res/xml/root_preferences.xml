@@ -45,7 +45,7 @@
 
         <SwitchPreferenceCompat
             app:key="sync"
-            app:title="Enable or unable the sound." />
+            app:title="Enable or disable the sound." />
     </PreferenceCategory>
 
 </PreferenceScreen>

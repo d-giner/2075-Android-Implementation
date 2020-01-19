@@ -78,8 +78,11 @@ public class InventoryActivity extends AppCompatActivity {
             }
         });
 
-        if (sharedData.getUserInventory() != null)
+        if (sharedData.getUserInventory() != null) {
             recyclerList.setAdapter(new DataAdapterInventory(sharedData.getUserInventory())); //Adding the user inventory to adapter in order to generate the recycler view.
+            if (sharedData.getUserInventory().size() == 0)
+                Toast.makeText(getApplicationContext(),"Your inventory is empty!",Toast.LENGTH_SHORT).show();
+        }
         else {
             Toast.makeText(getApplicationContext(),"Your inventory is empty!",Toast.LENGTH_SHORT).show();
         }

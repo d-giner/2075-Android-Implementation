@@ -22,6 +22,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 public class MainMenuActivity extends AppCompatActivity {
 
     private SharedPreferences sharedPref;
+    private SharedData sharedData = SharedData.getInstance();
     private SharedPreferences.Editor editor;
     private Button startGameBttn;
 
@@ -95,6 +96,8 @@ public class MainMenuActivity extends AppCompatActivity {
                 return true;
             case R.id.action_logout:
                 editor.clear().commit();
+                if (sharedData.getUserInventory() != null){
+                    sharedData.clearUserInventory();}
                 Toast.makeText(this, "See you soon soldier!", Toast.LENGTH_SHORT).show();
                 Intent intent2 = new Intent(getApplicationContext(), LoginActivity.class);
                 intent2.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);

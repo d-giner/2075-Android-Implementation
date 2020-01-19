@@ -121,8 +121,9 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
                 JsonElement questions = response.body();
-                editor.clear().commit();
                 if(!response.isSuccessful()){
+                    editor.clear().commit();
+                    progressL.setVisibility(View.GONE);
                     switch (response.code()) {
                         case 403:
                             showWarning("Are you registered?" + "\n\n" + "Seems like user or password is wrong!");
@@ -168,7 +169,6 @@ public class LoginActivity extends AppCompatActivity {
             public void onResponse(Call<LinkedList<Obj>> call, Response<LinkedList<Obj>> response) {
 
                 if(!response.isSuccessful()){
-                    editor.clear().commit();
                     switch (response.code()) {
                         case 404:
                             sharedData.initializeItemBools(); //This player do not has items, so we need to initialize some things

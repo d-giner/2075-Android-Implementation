@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.game.in2075.Retrofit.JsonClasses.DataAdapterGames;
 import com.game.in2075.Retrofit.JsonClasses.Game;
@@ -49,7 +50,7 @@ public class myGamesActivity extends AppCompatActivity {
                 if(!response.isSuccessful()){
                     switch (response.code()) {
                         case 404:
-                            errorInfoTxt.setText("Player ID not found.");
+                            Toast.makeText(getApplicationContext(), "You already not played any game.", Toast.LENGTH_SHORT).show();
                             break;
                         default:
                             errorInfoTxt.setText("Oops!" + "\n\n" + "Seem something goes wrong :S");

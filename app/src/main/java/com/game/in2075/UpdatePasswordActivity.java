@@ -3,7 +3,9 @@ package com.game.in2075;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Dialog;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -20,6 +22,8 @@ public class UpdatePasswordActivity extends AppCompatActivity {
     private Button updateBttn, cancelBttn;
     private TextView oldPassTxt, newPassTxt;
     private SharedData sharedData = SharedData.getInstance();
+    private SharedPreferences sharedPref;
+    private SharedPreferences.Editor editor;
     private Dialog msgDialog;
     Boolean userVerified = false;
 
@@ -39,6 +43,8 @@ public class UpdatePasswordActivity extends AppCompatActivity {
         oldPassTxt = findViewById(R.id.oldPassText);
         newPassTxt = findViewById(R.id.newPassText);
 
+        sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        editor = sharedPref.edit();
 
         cancelBttn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,6 +65,8 @@ public class UpdatePasswordActivity extends AppCompatActivity {
                     showWarning("Hey!" + "\n\n" + "You wrote wrong your old password!");
                 else {
                     sharedData.getUser().setPassword(b);
+                    editor.putString("password",b);
+                    editor.commit();
                     updatePasswordUser();
                 }
             }

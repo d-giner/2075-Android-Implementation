@@ -4,7 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -24,6 +26,8 @@ public class DeleteUserActivity extends AppCompatActivity {
     private SharedData sharedData = SharedData.getInstance();
     private Boolean userVerified = false;
     private Dialog popDialog;
+    private SharedPreferences sharedPref;
+    private SharedPreferences.Editor editor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +39,9 @@ public class DeleteUserActivity extends AppCompatActivity {
         popDialog = new Dialog(this);
         popDialog.setCancelable(false);
         popDialog.setCanceledOnTouchOutside(false);
+
+        sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        editor = sharedPref.edit();
 
         delBttn = findViewById(R.id.deleteButton);
         cancelBttn = findViewById(R.id.cancelButton);
@@ -91,6 +98,9 @@ public class DeleteUserActivity extends AppCompatActivity {
                     else {
                     userVerified = true;
                     showWarning("Thanks for enjoy our game " + username + "\n\n" + "We hope see you again!");
+                    editor.clear().commit();
+                    if (sharedData.getUserInventory() != null){
+                        sharedData.clearUserInventory();}
                 }
             }
             @Override

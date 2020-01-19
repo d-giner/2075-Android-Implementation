@@ -45,7 +45,7 @@ public class SharedData {
      }
 
      public void setUserInventory(LinkedList<Obj> li){
-         this.userInventory = new LinkedList<>();
+        this.userInventory = new LinkedList<>();
         this.userInventory.addAll(li);
 
         this.lightsaber = false;
@@ -77,6 +77,10 @@ public class SharedData {
 
      public LinkedList<Obj> getUserInventory(){
         return this.userInventory;
+     }
+
+     public void clearUserInventory(){
+        this.userInventory.clear();
      }
 
     public LinkedList<Obj> getShopItems() {
